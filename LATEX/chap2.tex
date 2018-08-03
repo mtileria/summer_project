@@ -1,0 +1,83 @@
+\section{DTN Space Networks}
+
+
+In \cite{cerf2007delay}, the authors define the Interplanetary Internet as ``a communication system design to provide Internet-like services across Interplanetary distances in support of deep space exploration''. The original motivation of the Delay Tolerant Architecture was the design of the Interplanetary Internet Architecture. Then, the specification evolves to cover a wide range of delay tolerant environments like wireless sensor networks, satellites networks, military tactical networks and others, and end with the specification of the Bundle protocol \cite{scott2007bundle} and a series of related documents.  
+
+There are fundamental differences in the way communication is performed in the space. Some of these properties make well-known protocols for terrestrial networks unsuitable for space networks \cite{fall2003delay}. The most significant differences between communications in the space and terrestrial communication are the extremely long signal propagation due to the speed of light and the lack of end-to-end connectivity due to planets motion which results in the disruption of connectivity between the OC and the spacecraft. However, there many other problems related to communication in deep space. Low data rates and highly asymmetric links, typically 8-256 kb/s for up-links (telecommands) and a much higher down-link data rate for telemetry commands and science data, in order of Mb/s, but for extremely long distance as Mars, the data rate is between 128 kb/s and 256 kb/s using relay orbiters. A centrally managed access to communications channel reduce the likelihood of congestion scenarios but generates intermittent scheduled connectivity limited by mission policies \cite{burleigh2003delay}.
+
+Nowadays, a limitation in space missions is that the predominant communication model is point-to-point between a spacecraft and its mission control centre and each mission operates independently. This communication model have been implemented using bespoke communication protocols for a number of years. However, over the last years, there is an effort from CCSDS and other bodies like IETF to standardised communication protocols for space missions. For instance, CCSDS developed the Space Packet Protocol specification and is working on its particular definition of the Bundle protocol for space communication \cite{standard2010ccsds}. 
+
+The disruption of communication in Mars due to celestial mechanics and the low data rate motivated the use of a hop relaying scheme to send science data but without implementing true inter-networking. Under this configuration, Mars rovers use available orbiters as intermediate hops but there is no addressing scheme, no classes of data and no proper network layer. These limitations will restrict operations of future missions which will gather and send more science data to mission control centre  \cite{rationale2010requirements}. 
+
+The experience has shown the advantages of a multi-hop communication model over a point-to-point model. Some of them are: an increase in science data return, lower power and hardware requirements for constrained nodes like rovers,  and the most important benefit is more contact opportunities \cite{rationale2010requirements}. Besides, it is predicted that future space mission will operate in an environment of interoperability and cross-support across space agencies. Spacecraft, satellites, rovers and other human-made objects will act as a network of space-based entities as shown in figure XXX.
+
+INSERT FIGURE!!!
+
+
+\subsection{Security in Space Communications}
+
+
+
+Today's ubiquitous cyber threats make space missions target of malicious attackers.  In the past, only military missions were targets of adversary attacks and for that reason have been highly protected, but this is not true anymore, and all mission requires protection. The advance of technology and communication systems apply to civilian and scientific missions in deep space. Furthermore, satellites form part of many critical systems like navigation, weather study, and disaster response activities.  As state before, future missions will require interoperability between nodes that might be administrated by different agencies. Therefore, a space mission must consider the implementation of secure communication to reduce the likelihood of attacks whether its infrastructure is in orbit around the earth or exploring remote places in the solar system \cite{book2006security}.
+
+As the traditional communication model in space missions is point-to-point between operation centre and spacecraft, data links have been secured using bulk encryption. Although this technique is simple, requires special techniques and hardware to be deployed in both sides and it is not scalable for the Interplanetary Internet model which allows communication over multiple hops and interoperability among space agencies. The International Traffic in Arms Regulations might have jurisdiction for international interoperability \cite{ivancic2009security}. 
+
+The CCSDS present a list of threat sources applicable to space missions. The adversaries include terrorist, criminals, foreign intelligence services, computer hackers, and commercial competitors. There are other sources as insiders, environmental and structural. The document classifies threats as active (jamming, unauthorised access, masquerading, Denial of Services) and passive (tapping, traffic analysis). 
+
+It is worth to mention that threats could apply to any segment of space missions: space segment, ground segment, space-link segment. A simplified diagram of segments is shown below ....
+
+INSERT FIGURE!!!!
+
+In this example, the satellite and the lunar rover form part of the space segment. The space-link segment is the connection between the satellite and the ground station and the ground segment is composed of the ground station and the mission control centre which has the administration of the elements in space. Two important points should be noted in this diagram.  Firstly, the mission control centre and the ground station are not in the same physical location, which requires a secure connection between them. On the other hand, the network infrastructure on the earth could belong to one entity and the mission control centre to another. An example is the Mars Exploration Mission, which has its mission control is the JPL headquarters and uses the Deep Space Network as the ground station. This situation suggests that a key management solution for the Interplanetary Internet should consider interoperability not only between nodes from different agencies, but it should also consider interoperability between the Internet on earth and the key management solution for the space DTN. 
+
+ In \cite{book2012architecture}, CCSDS present security requirements for five space mission profile. These profiles are human spaceflight, earth observation, communication, scientific, and navigation. For instance, humans spaceflights present all security requirements but also ``safety-of-life'' and privacy issues. The security of earth observation, navigation, and communications missions vary depending on the information value and the relative position to the earth. Some missions require security for telemetry, telecommands, and payload communication, others only need to secure a subset of those. Science missions are more complicated than the previous,  the distance to the earth change requirements dramatically. For interplanetary missions, there are extra factors that should be considered at the time of implementing security, for instance, communication delay, discontinuous communication, fault tolerance, ability to use intermediate nodes (planned and unplanned), significant mission lifetime. The last point to consider is multi-organisational missions in which payloads and data may belong to different organisations. Relay spacecraft and the origin or destination may be administrated by different agencies as well. 
+
+It remains to see how different profiles could fit in a single key management scheme.
+ 
+
+
+
+\subsection{Key Management for current Missions}
+
+In current missions, key management complexity is low. There are mainly two entities involve: the mission control centre or operation control centre OCC and the spacecraft. The OCC is responsible for generation, managing and revoking keys. In the context of human-crewed missions, the human intervention in spacecraft is limited. Optionally, the ground station could take part in the key management in the case it is working as security gateway and user facilities may be present if payload data have to be disseminated \cite{book2011space}. 
+
+Differences between current mission and future missions:
+
+- key generation procedure affects only the ground segments. 
+
+It is recommended to store keys in secure storage such as smart card and physical protected place. Master key is used to exchange traffic protection keys TPKs. this process may takes place inside the operational network. 
+
+Initial pre-distribution of symmetric keys. Master keys are used to generate or exchange new keys of a lower hierarchy as a traffic protection key. In the case that a master key is used as encryption key, all key management operation are conducted before launch. Could be more than one master key \cite{book2011space}.
+
+Many environmental properties influence a key management solution in space missions \cite{book2011space}. Asymmetric channels and bandwidth restriction, propagation delay, intermittent connectivity, remote location, limited computational resources and memory. These limitations imply that symmetric key cryptosystems are more suitable in space missions. 
+
+However, for the Interplanetary Internet is expected a full constellation scenario in which each spacecraft, robot,  ground station, OCC, and end user facilities are individuals nodes in a global network using the Bundle Protocol. Under this conditions, it seems more likely a scheme similar to terrestrial Internet as not only keys are in consideration, policies, rights, hierarchy,  and administrative groups should be consider. Moreover, the network might scale to thousands of nodes, and symmetric keys deployment becomes more difficult considering that different organisations participate in the network.   Heterogeneous nodes will operate in the Interplanetary Internet, and some of them may have an active role in the key management scheme. All of this, support the idea of a similar Internet architecture for key management with some extension to handle particular constraints that present the deep space environment like disruption and long delays.  
+
+
+from DTN space requirement: LLC o LLT
+
+
+\subsection{Delay and Disrupted Tolerant Networks}
+
+The delay Tolerant Architecture is proposed in \cite{cerf2007delay}. It defines a network architecture for irregularly connected networks subject to frequent partition and possibly long propagation delays. To face these particular properties, the authors define an overlay layer which provides end-to-end reliable messages delivery called the \textbf{bundle layer}. This layer works under the application layer and could be used over the transport, network or data link layers using different convergence layer for each case to communicate with lower layer protocols. 
+
+The DTN architecture provides persistent storage, hop-by-hop transfer, late binding, optional end-to-end acknowledgement to offer reliable delivery of messages. It also uses URI identifiers for naming; this flexible model allows the encapsulation of different addressing schemes. The Bundle protocol specification \cite{rfc5050}, produced by the IETF,  define the services offered by the Bundle protocol, bundle format, bundle processing and convergence layers. A node implementing the bundle protocol is called bundle node. 
+
+ 
+
+
+
+
+\subsection{Security in space DTN}
+
+
+ From the beginning, the Delay-Tolerant Research Group worked on the security specifications for the Bundle protocol. The motivation was to provide data integrity and confidentiality services to the bundle layer. The Bundle Security Protocol Specification \cite{rfc6257} partially defines the security blocks, security processing, allowed ciphersuites, tunnel encapsulations, policies and key management. The Bundle Protocol security Specification \cite{ietf-dtn-bpsec-07} extends the previous document adding the design decisions, canonical form of blocks, security considerations, adversary model, and more.  There are many other documents related to security which complement these specifications.  It is worth to mention that many specifications are still \textit{work in progress} and there are issues that remain unsolved.
+ 
+ A space DTN operates as an overlay network on the top of different lower layers. Thus, the first threat are non-DTN nodes which could exploit vulnerabilities in the bundle layer. Besides, the Bundle protocol allows a mix of security-aware nodes and non-secure nodes in the same network; in a space scenario, this could be for the lack of node resources or mission policies, for instance, security being implemented in other layers. Unauthorised access is a major problem for a space DTN because the resources are scarce, especially in the space segment. Denial of service (DoS) attack is another concern for a space DTN. Attackers could take advantage of long delays to make DoS attacks more effective. 
+ 
+ 
+ 
+ 
+
+
+

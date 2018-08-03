@@ -1,0 +1,64 @@
+\documentclass[11pt]{article} % do not change this line
+\input{BigDataStyle.txt}      % do not change this line
+
+\usepackage{amsmath,amsfonts,amssymb,amsthm,latexsym,graphicx,caption,hyperref,listings,color,xcolor}
+\usepackage[export]{adjustbox}
+\usepackage{float} 
+\usepackage[section]{placeins}
+\usepackage[boxed,ruled,vlined,dotocloa,english,onelanguage]{algorithm2e}
+\graphicspath{ {pictures/} }
+\emergencystretch=5mm
+\tolerance=400
+\allowdisplaybreaks[4]
+
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{problem}[theorem]{Problem}
+
+\theoremstyle{definition}
+\newtheorem*{remark}{Remark}
+
+\title{Key Management for the Interplanetary Internet}
+\author{Marcos Tileria}
+
+\newcommand{\Programme}{Doctoral Training Centre in Cyber Security}
+
+
+\begin{document}
+\maketitle
+
+\declaration
+
+\begin{abstract}
+  The Interplanetary Internet is a computer network designed to provide Internet-like service to space missions. The communication in deep space is characterised by extremely long delays and the lack of end-to-end connectivity. The Delay/Disruption Tolerant (DTN) Architecture was defined to provide a reliable communication system for ``challenge networks''. Unauthorised access to scare resources is a critical threat for space-based networks and network security is a fundamental part of the architecture. In this context, cryptography key management is considered the most difficult security problem for DTNs, and there is no definitive solution to this problem. 
+  
+\end{abstract}
+
+\input{./chap1.tex}
+ \newpage
+
+\input{./chap2.tex}
+ \newpage
+
+\input{./chap3.tex}
+\newpage
+
+\input{./chap4.tex}
+ \newpage
+
+\input{./chap5.tex}
+ \newpage
+
+\input{./chap6.tex}
+ \newpage
+
+
+\bibliographystyle{plain}
+\bibliography{bibliography}
+\end{document}
+
+
