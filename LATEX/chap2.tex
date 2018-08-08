@@ -67,37 +67,27 @@ An example of the previous idea is the Mars Exploration Mission, which has its m
 
 \subsection{Key Management for current Missions}
 
-In current missions, key management complexity is low. There are mainly two entities involve: the mission control centre or operation control centre OCC and the spacecraft. The OCC is responsible for generation, managing and revoking keys. In the context of human-crewed missions, the human intervention in spacecraft is limited. Optionally, the ground station could take part in the key management in the case it is working as security gateway and user facilities may be present if payload data have to be disseminated \cite{book2011space}. 
-
-Differences between current mission and future missions:
-
-- key generation procedure affects only the ground segments. 
-
-It is recommended to store keys in secure storage such as smart card and physical protected place. Master key is used to exchange traffic protection keys TPKs. this process may takes place inside the operational network. 
-
-Initial pre-distribution of symmetric keys. Master keys are used to generate or exchange new keys of a lower hierarchy as a traffic protection key. In the case that a master key is used as encryption key, all key management operation are conducted before launch. Could be more than one master key \cite{book2011space}.
-
-Many environmental properties influence a key management solution in space missions \cite{book2011space}. Asymmetric channels and bandwidth restriction, propagation delay, intermittent connectivity, remote location, limited computational resources and memory. These limitations imply that symmetric key cryptosystems are more suitable in space missions. 
-
-For the Interplanetary Internet is expected a full constellation scenario in which each spacecraft, robot,  ground station, OCC, and end user facilities are individuals nodes in a global network using the Bundle Protocol. Under this conditions, it seems more likely a scheme similar to terrestrial Internet as not only keys are in consideration, policies, rights, hierarchy,  and administrative groups should be consider. Moreover, the network might scale to thousands of nodes, and symmetric keys deployment becomes more difficult considering that different organisations participate in the network.   
-Heterogeneous nodes will operate in the Interplanetary Internet, and some of them may have an active role in the key management scheme. All of this, support the idea of a similar Internet architecture for key management with some extension to handle particular constraints that present the deep space environment like disruption and long delays. It is likely to have group key management for multicast within the network.  
+In current space missions, key management complexity is low.  The mission control centre and spacecraft are mainly the entities involve. The mission control centre is responsible for generating, managing and revoking keys. In the context of human-crewed missions, the human intervention in key management operations in deep space is limited. Optionally, the ground station could take part in key management operation if it is working as a security gateway. User facilities may be present if payload data have to be disseminated \cite{book2011space}. 
 
 
+Typically keys are stored in smart cards and physical protected place. Key generation procedure affects only the ground segment. Master keys are used to generate or exchange new keys of lower hierarchy such as traffic protection keys. In the case that a master key is used as encryption key, all key management operation are conducted before launch. It is possible to use more than one master key in a spacecraft \cite{book2011space}.
 
-Symmetric key will be a requirement even for future space missions. There are sensible operations which require symmetric keys between the spacecraft and the OCC; recovery operations, low-level telemetry and telecommands, among other.  However, this is for use only within the mission and does not seem to fit for the Interplanetary Internet for scalability and interoperability issues. 
+Many environmental properties influence a key management solution in space missions. Asymmetric channels and bandwidth restriction, propagation delay, intermittent connectivity, remote locations, limited computational resources and memory. 
 
+Although these limitations imply that symmetric key cryptosystems are more suitable for space missions \cite{book2011space}, future space missions present a different scenario and it is unlikely than symmetric cryptosystems fit the new requirements.
 
+%It is likely to have group key management for multicast within the network.  
 
-There is always a trade-off of usability against security. Security adds overhead, but the limited resources of nodes in the space segment requires the minimisation of overhead in bandwidth and storage otherwise mission planners will reject the security system \cite{book2012architecture}. 
+\section{Delay and Disrupted Tolerant Networks}
 
+The delay Tolerant Architecture \cite{cerf2007delay} defines a network architecture for irregularly connected networks subject to frequent partition and possibly long propagation delays. To face these particular properties, the authors define an overlay layer which provides end-to-end reliable messages delivery called the \textbf{bundle layer}. This layer works under the application layer and could be used over the transport, network or data link layers using different convergence layer to communicate with lower layer protocols. 
 
-\subsection{Delay and Disrupted Tolerant Networks}
+The DTN architecture provides persistent storage, hop-by-hop transfer, late binding, and optional end-to-end acknowledgement to overcome the constrained environment. It also uses Universal Resources Identifiers URI  as naming scheme; this flexible model allows the encapsulation of different addressing schemes and late binding. The Bundle protocol specification \cite{rfc5050}, produced by the IETF,  define the services offered by the Bundle protocol, bundle format, bundle processing and convergence layers. 
 
-The delay Tolerant Architecture is proposed in \cite{cerf2007delay}. It defines a network architecture for irregularly connected networks subject to frequent partition and possibly long propagation delays. To face these particular properties, the authors define an overlay layer which provides end-to-end reliable messages delivery called the \textbf{bundle layer}. This layer works under the application layer and could be used over the transport, network or data link layers using different convergence layer for each case to communicate with lower layer protocols. 
+A bundle is the basic data unit of the Bundle protocol. The bundle is a self-contained data unit because negotiation between nodes might not be possible due to the delay and disruption. A bundle node could be any entity that can send or receive bundles. From here on, spacecraft, satellites, rovers or any human-made object in deep space can have one or more bundle nodes. 
 
-The DTN architecture provides persistent storage, hop-by-hop transfer, late binding, optional end-to-end acknowledgement to offer reliable delivery of messages. It also uses URI identifiers for naming; this flexible model allows the encapsulation of different addressing schemes. The Bundle protocol specification \cite{rfc5050}, produced by the IETF,  define the services offered by the Bundle protocol, bundle format, bundle processing and convergence layers. A node implementing the bundle protocol is called bundle node. 
+A space DTN is a particular case of delay tolerant network. By far, is the most extreme scenario where delays could be extremely long and the communications get disrupted by the planets orbit and motion. There is much work ongoing on the Bundle protocol, and it is believed that in a few years the entire specification could be ready to deploy in space missions. As state before, several tests were already successfully performed of the Bundle protocol in deep space.
 
- 
 
 
 
@@ -105,13 +95,20 @@ The DTN architecture provides persistent storage, hop-by-hop transfer, late bind
 \subsection{Security in space DTN}
 
 
- From the beginning, the Delay-Tolerant Research Group worked on the security specifications for the Bundle protocol. The motivation was to provide data integrity and confidentiality services to the bundle layer. The Bundle Security Protocol Specification \cite{rfc6257} partially defines the security blocks, security processing, allowed ciphersuites, tunnel encapsulations, policies and key management. The Bundle Protocol security Specification \cite{ietf-dtn-bpsec-07} extends the previous document adding the design decisions, canonical form of blocks, security considerations, adversary model, and more.  There are many other documents related to security which complement these specifications.  It is worth to mention that many specifications are still \textit{work in progress} and there are issues that remain unsolved.
+ From the beginning, the Delay-Tolerant Research Group worked on the security specifications for the Bundle protocol. The motivation was to provide data integrity and confidentiality services to the bundle layer. The Bundle Security Protocol Specification \cite{rfc6257} partially defines the security blocks, security processing, allowed ciphersuites, tunnel encapsulations, and policies. The Bundle Protocol security Specification \cite{ietf-dtn-bpsec-07} extends the previous document adding the design decisions, canonical form of blocks, security considerations, adversary model, and more. There are many other documents related to security which complement these specifications.  It is worth to mention that many specifications are still \textit{work in progress}.
  
  A space DTN operates as an overlay network on the top of different lower layers. Thus, the first threat are non-DTN nodes which could exploit vulnerabilities in the bundle layer. Besides, the Bundle protocol allows a mix of security-aware nodes and non-secure nodes in the same network; in a space scenario, this could be for the lack of node resources or mission policies, for instance, security being implemented in other layers. Unauthorised access is a major problem for a space DTN because the resources are scarce, especially in the space segment. Denial of service (DoS) attack is another concern for a space DTN. Attackers could take advantage of long delays to make DoS attacks more effective. 
  
  
  
  
+For the Interplanetary Internet is expected a full constellation scenario similar to the terrestrial Internet. Under this conditions, it seems more likely a scheme similar to terrestrial Internet as not only keys are in consideration, policies, rights, hierarchy,  and administrative groups should be consider. Moreover, the network might scale to thousands of nodes, and symmetric keys deployment becomes more difficult considering that different organisations participate in the network.   
+
+Heterogeneous nodes will operate in the Interplanetary Internet, and some of them may have an active role in the key management scheme. All of this, support the idea of a similar Internet architecture for key management with some extension to handle particular constraints that present the deep space environment like disruption and long delays. 
+
+
+Symmetric key will be a requirement even for future space missions. There are sensible operations which require symmetric keys between the spacecraft and the OCC; recovery operations, low-level telemetry and telecommands, among other.  However, this is for use only within the mission and does not seem to fit for the Interplanetary Internet for scalability and interoperability issues. 
 
 
 
+There is always a trade-off of usability against security. Security adds overhead, but the limited resources of nodes in the space segment requires the minimisation of overhead in bandwidth and storage otherwise mission planners will reject the security system \cite{book2012architecture}. 
