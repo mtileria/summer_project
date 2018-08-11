@@ -1,20 +1,33 @@
 \section{Introduction}
 
+Cerf \textit{et al.} \cite{cerf2007delay} define the Interplanetary Internet as ``a communication system envisioned to provide Internet-like services across Interplanetary distances in support of deep space exploration''. The original motivation of the Delay Tolerant Architecture was the design of the Interplanetary Internet Architecture. However, the work evolves to cover a wide range of delay tolerant environments like wireless sensor networks, satellites networks, and military tactical networks. 
+%and end with the specification of the Bundle protocol \cite{scott2007bundle} and a series of related documents. 
 
--Different research groups and organisation CCSDS, IPN
--experiments
--why no tcp and others
--other protocols: LTP, CFDP, 
--security
+Space-based communications present new challenges to protocols designers.  The vast distance between a mission operation centre and a spacecraft in deep space makes the propagation delay considerably long. The propagation delay range within the Solar System is 1.5 seconds to  2.5 hours. The second major problem is disrupted communications due to the lose of line-of-sight of space objects because of planets motion. These particular properties of space-based communications make well-known protocols unsuitable for deep space communication, including cryptographic protocols and key management. 
 
 
-Cerf \textit{et at} \cite{cerf2007delay} define the Interplanetary Internet as ``a communication system design to provide Internet-like services across Interplanetary distances in support of deep space exploration''. The original motivation of the Delay Tolerant Architecture was the design of the Interplanetary Internet Architecture. Then, the specification evolves to cover a wide range of delay tolerant environments like wireless sensor networks, satellites networks, military tactical networks and others, and end with the specification of the Bundle protocol \cite{scott2007bundle} and a series of related documents. 
+The Delay Tolerant Architecture \cite{cerf2007delay} and the Bundle protocol \cite{scott2007bundle} were defined by to overcome these problems. The Bundle protocol operates on the top of lower layer protocols creating a store and forward overlay network \cite{ivancic2009security}. The current work is being done by academic researchers, and DTN working groups on the Internet Research Task Force IRTF, and the Consultative Committee of Space Data Systems CCSDS. The latter organisation has the mission of standardise spaced-based communication protocols since 1981.
+
+%s a multi-national forum for the development of communications and data systems standards for spaceflight.
+%The Bundle protocol is a end-to-end message-oriented overlay 
+
+The CCSDS recognises that all types of space missions are potential target of malicious attackers.  Security specifications \cite{ietf-dtn-bibect-00,ietf-dtn-bpsec-07,rfc6257} define integrity and confidentiality services for Bundle protocol. Security blocks and mandatory ciphersuites are defined in these specifications as well.  Cipher-suites based on symmetric and asymmetric are considered in the documents. However, no key management is specified.   
+
+Key management is a central part of any secure communication system. Generate, distribute and update keys is a challenging problem in connected networks, but in DTNs the problem is even more complicated. Furthermore, key Management is recognised as one of the most difficult security problems for DTNs  \cite{menesidou2017cryptographic}.
+
+Nowadays, bulk encryption is used to secure communication between spacecraft and its mission control centre. The use of symmetric keys is a efficient solution considering the limited resources and the predominant point-to-point communication in current missions. However, the Interplanetary Internet envisions a network of multiple space nodes that send messages using multi-hop communication. Moreover interoperability between space agencies makes more complicate the deployment of symmetric keys and new key management solution are needed.
 
 
-Cryptographic Key Management is recognised as the most difficult problem in DTNs. For many years, research and working groups from IETF and other organisation left the problem unsolved and assumed that there was a reasonable key management solution that can be used to generate, update and distribute keys among DTN nodes. 
-
-Key management is a central part of any secure communication system and plays a critical role in overall security. Furthermore, key management is recognised as a difficult problem in a connected network, and a disrupted network subject to long delays make the problem even more complicated.  
+For many years, DTN working groups omitted the key management problem, nevertheless, many solutions for all types of DTNs were proposed, including space-based DTNs. Finally, The IETF published a draft for a Delay Tolerant Key Administration in 2018 \cite{burleigh-dtnwg-dtka-01}. Section \ref{sec:survey} presents a study of these proposals.   
 
 
-The future space exploration envisions multiple space nodes that communicate with each other and not only between space and Operation Centre (OC). A space node could be any human-made object send into deep space in support of space mission, for instance, satellites, orbiters, landers, rovers or any small robot. An immediate consequence of the new communication model will be an increase in the number of interconnected systems, data transfer and connectivity. The current architecture is not designed to support such expansion, and an upgrade will be necessary. A similar situation occurred in the early days of telephone systems and switchboards. As the number of users grew, it was not possible human circuit switching anymore, and the system had to evolve into an automated switching systems \cite{rationale2010requirements}. The space communication architecture requires a transformation from point-to-point communications toward a flexible architecture capable of managing the new communication requirements of future space missions. 
+This project studies the key management problem considering the hostile deep space environment and the future communication model. 
+
+The section \ref{sec:space} provides an overview of the communication in space missions. Section \ref{sec:dtn} explain the bundle protocol, the security specifications and key management requirements. A survey of the proposed solution is presented in section \ref{sec:survey}. Section \ref{sec:evaluation} present an evaluation of the most promising solution and suggest a way to improve them. Final considerations and conclusions are given in section \ref{sec:discussion}. 
+
+
+%The current architecture is not designed to support such expansion, and an upgrade will be necessary. A similar situation occurred in the early days of telephone systems and switchboards. As the number of users grew, it was not possible human circuit switching anymore, and the system had to evolve into an automated switching systems \cite{rationale2010requirements}.
+
+%Space communication architecture requires a transformation from point-to-point communications toward a flexible architecture capable of managing the new communication requirements of future space missions \cite{rationale2010requirements}. 
+
 

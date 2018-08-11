@@ -1,16 +1,21 @@
 \section{Deep Space Communications}
+\label{sec:space}
 
 There are fundamental differences between space-based communication and traditional communication on the earth. Understand the physical limitations of communication in deep space is fundamental at the time of design secure protocols. This section gives a review of the principal components of space-based communication, the evolution of the communication model for space missions and provide a security overview of space-based networks.
 
 The launch of the Sputnik 1 satellite gave origin to the Space Race. Human spaceflights and unmanned robotic space probes were developed to support space exploration missions. A communication system was needed to send commands from a mission control centre and receive information from spacecraft. The original idea was simple: the mission control centre sends a Radio Frequency (RF) signal to a spacecraft, known as telecommand, the spacecraft receives the signal via its antenna and process the telecommand, then the spacecraft replies with telemetry command or science data if necessary. As space missions grew in complexity and distance to the earth, communication systems had to evolve to keep the pace. 
 
-A simplified diagram of a space mission architecture is shown in the figure. 
+A simplified diagram of a space mission architecture is shown in the figure \ref{fig:space-based-arc}.  
 
-INSERT FIGURE!!!!
-INSERT FIGURE!!!!
-INSERT FIGURE!!!!
 
-In this example, the satellite and the lunar rover form part of the space segment. The space-link segment is the connection between the ground station and the satellite.  The ground station and the mission control centre form the ground segment, sometimes the mission control centre is called Operational Control Centre OCC, and it has the control of the objects in deep space.
+\begin{figure}[ht]
+\centering
+\includegraphics[width=1 \linewidth, height=9.5cm]{images/ground.png} 
+\caption{Space-based communication architecture}
+\label{fig:space-based-arc}
+\end{figure}
+
+In this example, the satellite and the lunar rover form part of the space segment. The space-link segment is the connection between the ground station and the satellite.  The ground station and the mission control centre constitute the ground segment. The mission control centre, sometimes called Operational Control Centre (OCC) has the control of the objects in deep space.
 
  The most significant differences of space-based communication are the long propagation delay due to the speed of light and the lack of end-to-end connectivity caused by planets motion, resulting in the disruption of connectivity between a mission control centre and space objects. These properties make well-known protocols for terrestrial networks unsuitable for space communications \cite{fall2003delay}.
 
@@ -78,37 +83,3 @@ Although these limitations imply that symmetric key cryptosystems are more suita
 
 %It is likely to have group key management for multicast within the network.  
 
-\section{Delay and Disrupted Tolerant Networks}
-
-The delay Tolerant Architecture \cite{cerf2007delay} defines a network architecture for irregularly connected networks subject to frequent partition and possibly long propagation delays. To face these particular properties, the authors define an overlay layer which provides end-to-end reliable messages delivery called the \textbf{bundle layer}. This layer works under the application layer and could be used over the transport, network or data link layers using different convergence layer to communicate with lower layer protocols. 
-
-The DTN architecture provides persistent storage, hop-by-hop transfer, late binding, and optional end-to-end acknowledgement to overcome the constrained environment. It also uses Universal Resources Identifiers URI  as naming scheme; this flexible model allows the encapsulation of different addressing schemes and late binding. The Bundle protocol specification \cite{rfc5050}, produced by the IETF,  define the services offered by the Bundle protocol, bundle format, bundle processing and convergence layers. 
-
-A bundle is the basic data unit of the Bundle protocol. The bundle is a self-contained data unit because negotiation between nodes might not be possible due to the delay and disruption. A bundle node could be any entity that can send or receive bundles. From here on, spacecraft, satellites, rovers or any human-made object in deep space can have one or more bundle nodes. 
-
-A space DTN is a particular case of delay tolerant network. By far, is the most extreme scenario where delays could be extremely long and the communications get disrupted by the planets orbit and motion. There is much work ongoing on the Bundle protocol, and it is believed that in a few years the entire specification could be ready to deploy in space missions. As state before, several tests were already successfully performed of the Bundle protocol in deep space.
-
-
-
-
-
-\subsection{Security in space DTN}
-
-
- From the beginning, the Delay-Tolerant Research Group worked on the security specifications for the Bundle protocol. The motivation was to provide data integrity and confidentiality services to the bundle layer. The Bundle Security Protocol Specification \cite{rfc6257} partially defines the security blocks, security processing, allowed ciphersuites, tunnel encapsulations, and policies. The Bundle Protocol security Specification \cite{ietf-dtn-bpsec-07} extends the previous document adding the design decisions, canonical form of blocks, security considerations, adversary model, and more. There are many other documents related to security which complement these specifications.  It is worth to mention that many specifications are still \textit{work in progress}.
- 
- A space DTN operates as an overlay network on the top of different lower layers. Thus, the first threat are non-DTN nodes which could exploit vulnerabilities in the bundle layer. Besides, the Bundle protocol allows a mix of security-aware nodes and non-secure nodes in the same network; in a space scenario, this could be for the lack of node resources or mission policies, for instance, security being implemented in other layers. Unauthorised access is a major problem for a space DTN because the resources are scarce, especially in the space segment. Denial of service (DoS) attack is another concern for a space DTN. Attackers could take advantage of long delays to make DoS attacks more effective. 
- 
- 
- 
- 
-For the Interplanetary Internet is expected a full constellation scenario similar to the terrestrial Internet. Under this conditions, it seems more likely a scheme similar to terrestrial Internet as not only keys are in consideration, policies, rights, hierarchy,  and administrative groups should be consider. Moreover, the network might scale to thousands of nodes, and symmetric keys deployment becomes more difficult considering that different organisations participate in the network.   
-
-Heterogeneous nodes will operate in the Interplanetary Internet, and some of them may have an active role in the key management scheme. All of this, support the idea of a similar Internet architecture for key management with some extension to handle particular constraints that present the deep space environment like disruption and long delays. 
-
-
-Symmetric key will be a requirement even for future space missions. There are sensible operations which require symmetric keys between the spacecraft and the OCC; recovery operations, low-level telemetry and telecommands, among other.  However, this is for use only within the mission and does not seem to fit for the Interplanetary Internet for scalability and interoperability issues. 
-
-
-
-There is always a trade-off of usability against security. Security adds overhead, but the limited resources of nodes in the space segment requires the minimisation of overhead in bandwidth and storage otherwise mission planners will reject the security system \cite{book2012architecture}. 

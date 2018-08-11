@@ -1,14 +1,46 @@
-\section{Key Management in Space DTNs}
+\section{Delay and Disrupted Tolerant Networks}
+\label{sec:dtn}
 
-A survey of key management solution is presented in Survey by \cite{menesidou2017cryptographic}. 
+The delay Tolerant Architecture \cite{cerf2007delay} defines a network architecture for irregularly connected networks subject to frequent partition and possibly long propagation delays. To face these particular properties, the authors define an overlay layer which provides end-to-end reliable messages delivery called the \textbf{bundle layer}. This layer works under the application layer and could be used over the transport, network or data link layers using different convergence layer to communicate with lower layer protocols. 
+
+The DTN architecture provides persistent storage, hop-by-hop transfer, late binding, and optional end-to-end acknowledgement to overcome the constrained environment. It also uses Universal Resources Identifiers URI  as naming scheme; this flexible model allows the encapsulation of different addressing schemes and late binding. The Bundle protocol specification \cite{rfc5050}, produced by the IETF,  define the services offered by the Bundle protocol, bundle format, bundle processing and convergence layers. 
+
+A bundle is the basic data unit of the Bundle protocol. The bundle is a self-contained data unit because negotiation between nodes might not be possible due to the delay and disruption. A bundle node could be any entity that can send or receive bundles. From here on, spacecraft, satellites, rovers or any human-made object in deep space can have one or more bundle nodes. 
+
+A space DTN is a particular case of delay tolerant network. By far, is the most extreme scenario where delays could be extremely long and the communications get disrupted by the planets orbit and motion. There is much work ongoing on the Bundle protocol, and it is believed that in a few years the entire specification could be ready to deploy in space missions. As state before, several tests were already successfully performed of the Bundle protocol in deep space.
 
 
 
-Types of keys:
 
-- shared keys: across multiple agencies might no be desirable.
-- symmetric keys
-- public keys
+\subsection{Security for DTN in space}
+
+
+ From the beginning, the Delay-Tolerant Research Group worked on the security specifications for the Bundle protocol. The motivation was to provide data integrity and confidentiality services to the bundle layer. As space missions are more connected to the Internet and the economic value of space assets are very high is comprehensible consider information security as a critical component of the communication system.
+ 
+ The Bundle Security Protocol Specification \cite{rfc6257} partially defines the security blocks, security processing, allowed ciphersuites, tunnel encapsulations, and policies. The Bundle Protocol security Specification \cite{ietf-dtn-bpsec-07} extends the previous document adding the design decisions, canonical form of blocks, security considerations, adversary model, and more. There are many other documents related to security which complement these specifications.  It is worth to mention that many specifications are still \textit{work in progress}.
+ 
+
+A space DTN operates as an overlay network on the top of lower layers. Thus, the first threat is non-DTN nodes which could exploit vulnerabilities in the bundle layer. Besides, the Bundle protocol allows a mix of ``security-aware'' nodes and ``non-security-aware'' nodes in the same network; in a space-based network, the reason to deploy non-security-aware nodes could be for the lack of physical resources or security being implemented in other layers \cite{rfc6257}. 
+
+Unauthorised access is a major problem for a space DTN because the resources are scarce, especially in the space segment. Denial of service (DoS) attack is another concern for space DTNs. Attackers could take advantage of long delays to make DoS attacks more effective \cite{rfc6257}. 
+
+ 
+\subsection{Key Management for DTN in space}
+
+The last version of the Bundle Security Specification \cite{ietf-dtn-bpsec-07} defines two types of security blocks: Block Integrity Block (BIB) and Block Confidentiality Block (BCB).  An important requirement of services provided by these security blocks is that intermediate security-aware nodes may verify the integrity of the bundles or decrypt them. The consequence is that security-aware-nodes may need to be in possession of the corresponding verification or decryption keys. This requirement implies that any key management solution must consider this situation to meet the security specification. 
+
+
+For the Interplanetary Internet is expected a full constellation scenario similar to the terrestrial Internet \cite{rationale2010requirements}. Under this assumption, seems more suitable a key management design similar to the terrestrial Internet. Furthermore, policies, rights, hierarchy,  and administrative groups should be considered as well.  The network might scale to thousands of nodes, and different space agencies and private companies will participate in the network. Therefore a symmetric key solution becomes complicated.  
+
+Symmetric keys may be a requirement even for future space missions. 
+There are sensible operations which require symmetric keys between the spacecraft and the mission control centre. Examples include recovery operations, low-level telemetry and low-level telecommands.  However, there are some ideas on the IETF and Internet Society working groups involving the use of applications on the top of the bundle layer to handle these operations. 
+
+
+There is always a trade-off of usability against security. Security adds overhead, but the limited resources of some DTN nodes in the space segment requires the minimisation bandwidth and storage overhead, otherwise, mission planners will reject the security implementation \cite{book2012architecture}.   
+
+The next section is a literature review of the so far proposed key management solutions for delay tolerant space-based networks.
+
+
 
 
 
