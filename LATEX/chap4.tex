@@ -1,6 +1,40 @@
 \section{Key Management in Space DTNs}
 \label{sec:survey}
 
-A survey of key management solution is presented in Survey by \cite{menesidou2017cryptographic}. 
-Since 2007, working groups exclude key management for the specifications mainly for its complexity. In 2015, a problem statement was published, and later a document specifying security requirements and design for a key management solution.
+
+The problem if key management is considered an open issue in generals DTNs \cite{menesidou2016automated}. DTN in space is particular type of delay tolerant network and this section focuses on the study of the proposed key management solution for this type of networks.  The proposal were specifically design for DTN in space, unless otherwise stated.
+
+\subsection{Analysis of current Key Management Solution}
+
+In public key management, nodes must have an authenticated copy of the destination public key in order to encrypt the message and the destination nodes must have the origin public key the verify the integrity. Key distribution is almost trivial in the Internet. Low delay allows to obtain public keys directly from nodes or from a distribution centre. A handshake protocol, like TLS,  is generally used for this purpose. After obtain a key, nodes interact in almost real-time with the Certificate Authority to check the validity of certificates. However, real-time communication is not feasible in deep space and handshake protocols are discourage. 
+
+Nodes could check the validity of certificates using the Online Certificate Status Protocol (OCSP), but this requires online interactions with the trusted authority. There are modifications of OCSP but this are design to aliviate receivers of publuc keys but transfer the overhead to the senders of certificates. In Secure/Multi-purpose Internet Mail Extensions (S/MIME) sender could encapsulate its certificate as meta-data but the receiver is expected to validate the certificate. S\MIME remove the commnunication between nodes but still require on-demands interactions with a trusted authority.
+
+Online interactions with a Certificate Authority or other nodes cannot be assumed in space-based DTN. Neither handshake style protocols are not appropiate in deep space environment.  
+
+Add symmetric keys section HERE!!!
+
+
+
+\subsection{Standardisation effort}
+
+Although the DTN working groups have been active since 2007, a key management specification has been postponed for many years, mainly for its complexity \cite{rfc6257}. Farrell present a DTN Key Management Requirements \cite{farrell-dtnrg-km-00}. However, this document is a high level document and does no establish concluding requirements for a key management solution. 
+
+
+The first advance was a problem statement by Templin in 2014  \cite{templin-dtnskmps-00}. This internet-draft assumed that the solution involve some kind of public key cryptography and an automated system for publication of certificates and revocation lists. More important, the system must be designed to continue operation in the presence of long delays and intermittent connectivity and traditional key management protocols do not satisfy the requirements. The author suggest as well, the use of one-time keys, so each bundle is encrypted with a symmetric key encrypted by the destination public key. 
+
+Another Internet-Draft more detailed was published by the same author one year later \cite{templin-dtnskmreq-00}. The document proposed nine requirements for a key management solution. The requirement include no single point of failure, multuopke points of authoprity and delay tolerant key revocation. The document also proposed four design criteria to match ensure that the solution match the requirements. Among these stand out the publisher/suscriber model instead of an online directory service and the multiple source of publications. 
+
+Viswanathan \cite{viswanathan-dtn-pkdn-00} enumerates the possible communication patterns, data structure, architectural elements, and trust relationships.  This Internet-Draft provide a high level solution for key distribution and revocations using the publisher/suscriber pattern following the approach of previous documents.
+
+Finally, a newly published document proposed the Delay-Tolerant Key Administration (DTKA) which is a system for key management intended dor use in DTNs, particulary space-based communications. 
+
+\subsection{Taxonomy of key Management in DTN}
+
+Key management includes a wide range of processes which together provide security to cryptographic keys.  The problem of secure administration of cryptographic keys is complex but well-understood on terrestrial networks. Future space-based networks present two challenges to key management systems. Firstly, the network topology consists of space nodes and planned communication links, although opportunistic links might be available on rare occasions. Secondly, traditional cryptographic protocols are not suitable for this type of network. 
+
+
+
+
+
 
