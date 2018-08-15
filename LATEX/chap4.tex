@@ -4,12 +4,31 @@
 
 The problem of key management is considered an open issue in DTNs \cite{menesidou2016automated}. This section focuses on the study of the proposed key management solution space DTNs.  The proposals were designed explicitly for space-based systems unless otherwise stated.
 
-The fundamental problem for DTN in space is that space nodes need authenticated information without online interaction with a CA, distribution centre or other nodes. Information refers to keys, policies, or some form of identification. The latter is employed in non-interactive protocols or Identity-Based-cryptography (IBC). Thus, the distribution of authenticated information is the main problem that any key management system must solve.
-
-\subsection{Requirement Definition}
-Requierements: Certificates have to be cached locally. 
 
 
+\subsection{Requirement for Key Management}
+
+There are fundamental goals to any key management systems: secrecy of keys and assurance of purpose \cite{martineveryday}. DTNs present fundamental differences that make goals of protocols sometimes unclear or not simple to define. Routing is an example; in traditional networks, the purpose of routing is to select the best path between a source a destination. However, in space DTNs, connectivity is intermittent and propagation times are long. Hence the topology could change faster than topology updates propagation \cite{araniti2015contact}. Routing still consists in selecting the next hop until reaching a destination but the concept of best path is constrained.  The goal, in this case, could be to maximise the probability of bundle delivery.
+
+Key management follows a similar problem. Many key management proposals evaluate the solutions using different metrics, and it seems that it is not clear the final requirements. For that reason, a new set of requirements is defined in this project. The new requirements complement the fundamental requirements mention before. These are classified into mandatory and optional. 
+
+  
+Most of the new requirements are proposed by Templin \cite{templin-dtnskmreq-00}. But not all requirements are considered. Nevertheless the ones omitted are discussed later. 
+
+
+
+\begin{enumerate}
+    \item Keys must be available when needed. The design must no relay on a query-response interaction between a source node and the trusted party or a destination node.
+    \item The system must be trustworthy. There must be a trust anchor in the system; nodes cannot accept information directly from other nodes. 
+    \item A single point of failure is not acceptable. Nodes cannot depend only on one entity, and some type of high availability must be present in the system.
+    \item The system must support secure bootstrapping of nodes. The association between a node ID and its credentials must be certified before a node can use it in the DTN.
+    \item The system must support delay tolerant key revocation. The system must be able to revoke credentials before the expiry date. 
+    \item Credentials must be cached ``locally''. Space nodes must store credentials or the access to them should be subject to low delay and rarely disrupted links.
+\end{enumerate}
+
+HASTA ACA la correccion
+
+The fundamental problem for DTN in space is that space nodes need authenticated information without online interaction with a CA, distribution centre or other nodes. Information refers to keys or some form of identification. The latter is employed in solution based on non-interactive protocols or Identity-Based-cryptography (IBC). Thus, the access to authenticated information is the main problem for DTN nodes and any key management system must solve.
 
 
 \subsection{Analysis of current Key Management Solution}
@@ -23,7 +42,7 @@ In public key management, a node must have an authenticated copy of the destinat
 
 Low delays allow pushing and pulling, both to be effective on the Internet. For instance, TLS uses the pushing approach to retrieve the destination public key. After obtaining the public key, a node interacts with a Certificate Authority (CA) to check the validity of certificates. Alternatives for checking the validity are certificate revocation list CRL or the Online Certificate Status Protocol OCSP, but these requires interactions with the trusted authority which might not be feasible in deep space. Here should be noted as well that TLS, one of the most popular cryptographic protocol on Internet, uses a handshake between nodes to retrieve the public key and negotiate some parameters, protocols like this discourages for DTNs \cite{fall2003delay}.
 
-There are modifications of OCSP, but these are designed to alleviate the overhead on certificates receivers but transfer the cost to nodes pulling the certificates. In Secure$/$Multi-purpose Internet Mail Extensions (S$/$MIME) sender could encapsulate its certificate as meta-data but the receiver is expected to validate it. S\MIME remove the communication between nodes but still require on-demands interactions with a trusted authority.
+There are modifications of OCSP, but these are designed to alleviate the overhead on certificates receivers but transfer the cost to nodes pulling the certificates. In Secure/Multi-purpose Internet Mail Extensions (S/MIME) sender could encapsulate its certificate as meta-data but the receiver is expected to validate it. S/MIME remove the communication between nodes but still require on-demands interactions with a trusted authority.
 
 There are other alternatives to public keys based certificates. Templin \cite{templin-dtnskmps-00} states that web of trust might be an option for some types of DTNs, but more research should be done. For space-based networks, a model without a trusted authority is not acceptable. 
 
@@ -55,7 +74,9 @@ Finally, a newly published document proposed the Delay-Tolerant Key Administrati
 
 
 
+\subsection{A Survey of Key Management in space DTN}
 
+In the beginning, the research effort focused on modify public key management based on certificates and IBC solutions. 
 
 
 

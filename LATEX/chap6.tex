@@ -1,23 +1,17 @@
 section{Discussion and Challanges}
 \label{sec:discussion}
 
-Interoperability with terrestrial networks
+Requirements from Templin:Publisher/suscriber model, no veto and multiple points of authority. 
 
-
-
-Data privacy and anonymity coul be handle at application layer
-
-Applicability of different keys and policies. in space networks might be too complex to perform this types of management. 
+Data privacy and anonymity could be handle at application layer
 
 "The Interplanetary Internet named was deliberately coined to suggest a far-future integration of space and terrestrial communication infrastructure to support the migration of human intelligence through the Solar System" \cite{burleigh2003interplanetary}. 
 
 
 Symmetric keys may be a requirement even for future space missions. There are sensible operations which require symmetric keys between the spacecraft and the mission control centre. Examples include recovery operations, low-level telemetry and low-level telecommands.  However, there are some ideas on the DTN working groups involving the use of applications on the top of the bundle layer to handle these operations. 
 
-There are public key managemetn system without a trusted party like group based KM, PGP or block-chain based model. The problem is that revocation of public keys becomes impossible or unsuitable for a real scenario. The need of a trusted party acting as Certificate Authority becomes a requirement. Another problem is the message overhead in these model, something that it is unlikely to be acceptable in any king of delay tolerant network. 
+There are public key management system without a trusted party like group based KM, PGP or block-chain based model. The problem is that revocation of public keys becomes impossible or unsuitable for a real scenario. The need of a trusted party acting as Certificate Authority becomes a requirement. Another problem is the message overhead in these model, something that it is unlikely to be acceptable in any king of delay tolerant network. 
 
 Operation consideration - section in Ivancic paper
 
-Shared key is probably not acceptable. asymmetric keys are likely to be acceptable as this is easier to control and validate across organizational boundaries. reescribir esto. Security policies should be distributed as well to limit the use of system resources. Certificates could be usefor this purpose. 
-
-%There is much work ongoing on the Bundle protocol, and it is believed that in a few years the entire specification could be ready to deploy in space missions. As state before, several tests were already successfully performed of the Bundle protocol in deep space.
+Security policies should be distributed as well to limit the use of system resources. Certificates could be usefor this purpose. 
