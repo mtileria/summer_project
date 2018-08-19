@@ -13,7 +13,7 @@ There are fundamental goals to any key management systems: secrecy of keys and a
 Key management follows a similar problem. Many key management proposals evaluate the solutions using different metrics, and it seems that it is not clear the final requirements. For that reason, a new set of requirements is defined in this project. The new requirements complement the fundamental requirements mention before. These are classified into mandatory and optional. 
 
   
-Most of the new requirements are proposed by Templin \cite{templin-dtnskmreq-00}. But not all requirements are considered. Nevertheless the ones omitted are discussed later. 
+Most of the new requirements (REQ) are proposed by Templin \cite{templin-dtnskmreq-00}. Not all requirements are considered and two more are added. Nevertheless the ones omitted are discussed later. 
 
 
 
@@ -24,11 +24,11 @@ Most of the new requirements are proposed by Templin \cite{templin-dtnskmreq-00}
     \item The system must support secure bootstrapping of nodes. The association between a node ID and its credentials must be certified before a node can use it in the DTN.
     \item The system must support delay tolerant key revocation. The system must be able to revoke credentials before the expiry date. 
     \item Credentials must be cached ``locally''. Space nodes must store credentials or the access to them should be subject to low delay and rarely disrupted links.
+    \item The systems must be scalable. A space DTN could grow to thousands of nodes and the system must be capable of handling this situation. 
 \end{enumerate}
 
-HASTA ACA la correccion
 
-The fundamental problem for DTN in space is that space nodes need authenticated information without online interaction with a CA, distribution centre or other nodes. Information refers to keys or some form of identification. The latter is employed in solution based on non-interactive protocols or Identity-Based-cryptography (IBC). Thus, the access to authenticated information is the main problem for DTN nodes and any key management system must solve.
+The fundamental problem for DTN in space is that space nodes need authenticated information without online interaction with a CA, distribution centre or other nodes. Information refers to keys or some form of identification. The latter is employed in solution based on non-interactive protocols or Identity-Based-cryptography (IBC). Thus, the availability of authenticated information is the main problem for DTN nodes, and any key management system must solve (REQ 1).
 
 
 \subsection{Analysis of current Key Management Solution}
@@ -68,7 +68,7 @@ The first advance was a problem statement by Templin in 2014  \cite{templin-dtns
 
 Another Internet-Draft more detailed was published by the same author one year later \cite{templin-dtnskmreq-00}. The document proposed nine requirements for a key management solution. The requirement include no single point of failure, multuopke points of authoprity and delay tolerant key revocation. The document also proposed four design criteria to match ensure that the solution match the requirements. Among these stand out the publisher/suscriber model instead of an online directory service and the multiple source of publications. 
 
-Viswanathan \cite{viswanathan-dtn-pkdn-00} enumerates the possible communication patterns, data structure, architectural elements, and trust relationships.  This Internet-Draft provide a high level solution for key distribution and revocations using the publisher/suscriber pattern following the approach of previous documents.
+Viswanathan \cite{viswanathan-dtn-pkdn-00} enumerates the possible communication patterns, data structure, architectural elements, and trust relationships.  This Internet-Draft provide a high level solution for key distribution and revocations using the publisher/subscriber pattern following the approach of previous documents.
 
 Finally, a newly published document proposed the Delay-Tolerant Key Administration (DTKA) which is a system for key management intended for use in DTNs, particulary space-based communications. 
 
@@ -76,9 +76,26 @@ Finally, a newly published document proposed the Delay-Tolerant Key Administrati
 
 \subsection{A Survey of Key Management in space DTN}
 
-In the beginning, the research effort focused on modify public key management based on certificates and IBC solutions. 
+In the beginning, the research effort focused on modify public certificates based solutions and IBC. Aaditeshwar and Keshav \cite{seth2005practical} proposed one of the first solutions. Their solution was designed for disconnected environments rather than specifically space-based networks. They argue that disconnected nodes cannot efficiently use PKI because this requires queries to a central or replicated database, and certificates revocations list are unsuitable for the excessive delay. The authors proposed a solution based on HIBC for creating secure channels providing mutual authentication and key revocation using a Private Key Generator as the trust anchor. 
+
+Registration and establishment of system parameters require the exchange of several messages between the PKG, distribution agent and user, but this is done only one time. They proposed USB key storage devices to distribute symmetric keys from PKG to final users. For revocation, they used time-based keys where the PKG updates periodically every node with a new time-stamped private key. 
+Comments: Cross-domain communication requires a lookup of the destination system parameters or the generation of the decryption key from the source node PKG and then send to destination node PKG. The proposal does not meet the REQ 3, 4, and 5.
+
+Another solution based on IBC is proposed by Aniket \textit{et al.}\cite{kate2007anonymity}. This solution is more efficient than the previous one because a source node does not need to look up the public parameters of nodes in a different domain. Instead, it can use the root PKG parameters to communicate with any node in other domains. They also use a single-flow non-interactive key agreement scheme to exchange symmetric keys.  
+Comments: This scheme presents the same problems as the previous one for key revocation, secure bootstrapping and single point of failure. However, the authors suggest a secret-share scheme instead of a single PKG. This paper is the only one that provides an alternative anonymity architecture, but this requires updating the domain PKG's master key and the renewal of all users private keys.  For space-based DTNs, anonymity is not a primary concern. In any case, there are other ways to achieve anonymity like the bundle in bundle encapsulation. \cite{ietf-dtn-bibect-00}.
 
 
 
+An alternative scheme based on bilinear pairing is proposed by Xie and Wang \cite{xie2013practical}. They proposed a self-certified identity scheme and distributed key generation SCI-DKG that requires only an initial broadcast message rather than multiple interactions. Prior deployment, users obtain a digital ID card granted by a relevant authority and the system parameters. Each node generates its private key and distributes an initial message containing its credentials. When a node receives the initial message, it needs to verify if the signature matches with the credential, then compute a secret sharing and extract the encryption parameters. Comments: Unlike the previous proposals, this scheme provides secure bootstrapping REQ 4 but revocation in not supported REQ 3. Another issue is that the system is not scalable REQ 7.
+
+Group key management is an option for multicast communication. This project does not focus on group communication, but a brief analysis is presented. Groups key management can be classified into centralised, decentralised and distributed. The most important security requirement for group key management are forward secrecy, backward secrecy, collusion freedom and key independence \cite{camtepe2005key}. 
+
+Xu \textbf{et al.} \cite{xu2012chinese} proposed a group key management mechanism based on the Chinese Remainder Theorem for DTNs. The advantages are that the system does not need to broadcast messages when a node joins the domain, and only send one message when a node leaves the domain. A stateless scheme is used in this work to overcome delays and high error rates. For many to many communication, they add a lifetime to the group key to deal with users leaving the group. If a node does not receive the key update message at the corresponding interval, it can direct inquiry to a neighbour reducing the latency, but this is unacceptable for space-based networks REQ 2.
+
+Another approach is proposed by Zhou \textbf{et al.} \cite{zhou2014autonomic} based on one-encryption multi-decryption key protocol for deep space. Authors claim that their scheme is more efficient than previous ones but the join and leave operation could be done without the authority in violation to REQ 2, although they argue that the operation has the property of forward-security and backward-security if the key independence condition holds. 
 
 
+Van Vesien presented a solution using bilinear maps over elliptic curves \cite{van2010dynamic}. This work explain in details how the key exchange protocol works for each security block of the Bundle protocol. The author assumed that the protocol will be used to exchange keys for HMAC-SHA 1 authentication, RSA digital signature, and AES encryption. Nodes could be members of multiple groups, and only nodes in the same group can exchange keys. Initially, a group administrator calculates a value for each node using a master key and the node ID. Then the administrator provides the calculated value to each node before deployment. Two hosts can non-interactively establish a shared secret using a symmetric mapping function, the value provided by the group administrator, and the parameters containing key information. This proposal only focuses on key distribution, and there are no mentions of initialisation or revocation REQ 1,5. Scalability REQ 6 might be an issue because in practice nodes can only be member of two groups. 
+
+
+For solving the key management problem, Jadhav \textbf{et al.} proposed using a time-evolving topologu model and two channel crytptography to design a non-interactive key exchange protocol. This protocol assumes two channel, one insecure and one secure usually called Out-Of-Band channel. 
