@@ -82,14 +82,14 @@ For many countries, satellites already form part of critical infrastructures lik
 
 \subsection{Key Management in current Missions}
 
-In current space missions, key management complexity is low.  Typically, the mission control centre and spacecraft are the entities involved. The mission control centre is responsible for generating, managing and revoking keys. For human-crewed missions, the human intervention in key management operations is limited. Optionally, the ground station could take part in key management operation if it is working as a security gateway.  User facilities may be present if payload data have to be disseminated \cite{book2011space}. 
+In current space missions, key management complexity is low.  Typically,  the entities involved are the mission control centre and the spacecraft. The mission control centre is responsible for generating, managing and revoking keys. For human-crewed missions, the human intervention in key management operations is limited. Optionally, the ground station could take part in key management operations if it is working as a security gateway. User facilities may get involved if payload data have to be distributed \cite{book2011space}. 
 
 
 Commonly keys are stored in smart cards in physical protected places. Key generation procedure affects only the ground segment. Master keys are used to generate or exchange new keys of lower hierarchy such as traffic protection keys or key encrytion keys. In the case that a master key is used as an encryption key, all key management operations are conducted before launch. Any number of master keys could be used at the discretion of mission planners \cite{book2011space}.
 
-Many environmental properties influence a key management solution in space missions. Asymmetric channels, bandwidth restriction, propagation delay, intermittent connectivity, remote locations. All these constraints apply to communication and cryptographic protocols, but limited computational resources and memory should be considered for key management as well. For instance, some nodes might not be able to perform cryptographic operations, and the memory size limits the information that a node can store like keys or revocation list.
+In addition to long delays and disrupted communications, many environmental properties influence communications in space missions. For instance, asymmetric channels, bandwidth restriction, and remote locations. All these constraints apply to communication and cryptographic protocols, but limited computational resources and memory play a big role for key management. For instance, rovers or sensors might not be able to perform heavy cryptographic operations, and the memory size limits the information that these space objects could store like keys or revocation list.
 
-Although these limitations imply that symmetric key cryptosystems are more suitable for space missions \cite{book2011space}, future space missions present a different scenario and it is unlikely than symmetric cryptosystems fit the requirements mention before for the Interplanetary Internet.
+These limitations imply that symmetric key cryptosystems are more suitable for current space missions \cite{book2011space}, but future space missions present a different scenario, and it is unlikely than symmetric key based cryptosystems will meet the requirements of the Interplanetary Internet.
 
 %It is likely to have group key management for multicast within the network.  
 

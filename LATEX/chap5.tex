@@ -6,6 +6,14 @@ Requirements from Templin:Publisher/subscriber model, no veto and multiple point
 
 Data privacy and anonymity could be handle at application layer
 
+
+Ephemeral keys and forward secrecy. 
+
+Identity based cryptography: is impractical to generate new keys for shoort time periods in DTNs.
+Paper de Asokan, Nokia. IBC-based system try to solve the problem of key distribution and revocation list, eliminating the needs of having them. However, it is not clear the practical success as this solutions introduce many other problems. Asokan \cite{asokan2007towards} present a design to authenticate and encrypt messages using IBC and traditional PKI. The conclusion of his work is that IBC provide less message overhead for encryption but not for authentication without considering the problems that IBC introduce. 
+
+
+
 "The Interplanetary Internet named was deliberately coined to suggest a far-future integration of space and terrestrial communication infrastructure to support the migration of human intelligence through the Solar System" \cite{burleigh2003interplanetary}. 
 
 
@@ -18,3 +26,13 @@ Operation consideration - section in Ivancic paper
 Security policies should be distributed as well to limit the use of system resources. Certificates could be usefor this purpose. 
 
 Probabilistic topology inferences and frequent exchanges may introduce more incertainty than many netwoerks deployments may be willing to tolerate. 
+
+Recently, Menesidou and Vasilios \cite{menesidou2016automated} study the problem of key management on opportunistic networks. They argue that key management is better exploited when used in conjuntion with routing decision by DTN security aware nodes. They used the critical path method CPM as a decision making method for path different path between source and destination in which the duration of each activity is the end-to-end delay. The critical path represent the path with longest delay. The idea is that security aware nodes can exploit the slack time to perform key management operations. The authors developed a protocol parser for evaluating complex scenarios and simulate a space DTNs.
+
+the general concern of DTN is ``How to address the architectural and protocol design principles
+arising from the need to provide interoperable communications with and among extreme and performance-challenged environments, where continuous end-to-end connectivity cannot be assumed'' \cite{caini2011delay}.
+
+
+The DTKA used multiple Key Agents and a consensus protocol to avoid a single point of failure. IBC 2 used secret sharing scheme for the same purpose. 
+
+\subsection{Revocation List}
