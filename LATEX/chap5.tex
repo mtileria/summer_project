@@ -1,38 +1,65 @@
 
-\section{Evaluation of proposals, Discussion and Challenges}
+\section{Discussion and Challenges}
 \label{sec:evaluation}
 
-Requirements from Templin:Publisher/subscriber model, no veto and multiple points of authority. 
-
-Data privacy and anonymity could be handle at application layer
+One critical consideration before choosing the best key management system is understanding how the Interplanetary Internet will operate. Namely, the infrastructure available, the routing model, the trust model and certificate authority. Comments from professionals in the space industry were constructive to review these topics.
 
 
-Ephemeral keys and forward secrecy. 
+\subsection{An operational Interplanetary Internet}
 
-Identity based cryptography: is impractical to generate new keys for shoort time periods in DTNs.
-Paper de Asokan, Nokia. IBC-based system try to solve the problem of key distribution and revocation list, eliminating the needs of having them. However, it is not clear the practical success as this solutions introduce many other problems. Asokan \cite{asokan2007towards} present a design to authenticate and encrypt messages using IBC and traditional PKI. The conclusion of his work is that IBC provide less message overhead for encryption but not for authentication without considering the problems that IBC introduce. 
-
+The first point to discuss is the infrastructure available to route the bundles. The question is whether an ``interplanetary backbone'', formed by relay satellites,  or a peer-to-peer approach is most likely to be deployed. In the former scenario, DTN nodes have to wait for an opportunity contact with one DTN backbone node to send messages. In the peer-to-peer style, nodes use other nodes to route bundles, in an ad-hoc style. In any case, the contact planning determine routing policies and access rights, this is documented in the BSP and \cite{cerf2007delay}. 
 
 
-"The Interplanetary Internet named was deliberately coined to suggest a far-future integration of space and terrestrial communication infrastructure to support the migration of human intelligence through the Solar System" \cite{burleigh2003interplanetary}. 
+The belief in the space industry is that both models will have their place in the Interplanetary Internet. The interplanetary backbone is bound to emerge at some point in the future, but it will always be situations where DTN nodes will send bundle across the network using other peers. 
+
+Some contact planning authority is required to generate and distribute routing updates. The information has to be authenticated, just like keys. Some researchers suggest that secure routing in space DTN overlaps in some extent with key management \cite{}. For some part of the network, the information will come from a central authority, but at the edges of the interplanetary network, the contact planning will be ad-hoc or local. As a result, the contact planning problem is more complicated than key distribution, and the problems are disjoint.  
 
 
-Symmetric keys may be a requirement even for future space missions. There are sensible operations which require symmetric keys between the spacecraft and the mission control centre. Examples include recovery operations, low-level telemetry and low-level telecommands.  However, there are some ideas on the DTN working groups involving the use of applications on the top of the bundle layer to handle these operations. 
+Space exploration has shown that cooperation among nation-states is possible. A natural question is whether space agencies can continue this cooperation to simplify the key management or not. The question comes in the context of choosing the key management model. This problem is arguably one the most complex on terrestrial networks and the same issue must be solved for space-based networks. A new complication to this scenario is that it is expected that in the next 10 years, the private sector will play a major role in space exploration. 
+
+
+Initially, the problem resides in agree on the number of CA. In the first option, space agencies agree to trust a single CA, this is by far the best scenario. The multiple authority approach is the second option. For instance, each space agency could administrate one ``CA node'' and all together perform the CA role. 
+
+Indisputably the first option is hard to achieve but space exploration has shown that collaboration between nations is possible and this could motivate the single CA approach. A reasonable trust relationship is required is space agencies are going to share infrastructure in space. Ivancic \cite{ivancic2009security} mention that the Interplanetary Internet could look like a closed network open only to trusted parties. The second option requires some kind of cross-organisational certification which includes well-known problems, for example how and why should a node trust in a CA from another application domain. 
+
+
+Surprisingly, according the expert in the space industry, these questions, infrastructure, routing model and key management models have the same answer: All option will be realised in the Interplanetary Internet. The network topology will be a bunch of disjoint networks rather than a single Solar System Internet to the disadvantages of all participants. Some space agencies will cooperate and form a big infrastructure, others will be close, just as their corresponding nation. Even one space agency could participate in a joint network with other agencies but remain some assets to be used only for them.  
+
+
+
+
+"The Interplanetary Internet named was deliberately coined to suggest a far-future integration of space and terrestrial communication infrastructure to support the migration of human intelligence through the Solar System" \cite{burleigh2003interplanetary}. Deploy a key management system with substantial differences of the Internet (TLS certificates) which does not present sustancial benefits is counterproductive. 
+
+
+Symmetric keys may be a requirement even for future space missions. There are sensitive operations which require symmetric keys between the spacecraft and the mission control centre. Examples include recovery operations, low-level telemetry and low-level telecommands.  However, there are some ideas on the DTN working groups involving the use of applications on the top of the bundle layer to handle these operations. 
 
 There are public key management system without a trusted party like group based KM, PGP or block-chain based model. The problem is that revocation of public keys becomes impossible or unsuitable for a real scenario. The need of a trusted party acting as Certificate Authority becomes a requirement. Another problem is the message overhead in these model, something that it is unlikely to be acceptable in any king of delay tolerant network. 
 
-Operation consideration - section in Ivancic paper
 
-Security policies should be distributed as well to limit the use of system resources. Certificates could be usefor this purpose. 
-
-Probabilistic topology inferences and frequent exchanges may introduce more incertainty than many netwoerks deployments may be willing to tolerate. 
-
-Recently, Menesidou and Vasilios \cite{menesidou2016automated} study the problem of key management on opportunistic networks. They argue that key management is better exploited when used in conjuntion with routing decision by DTN security aware nodes. They used the critical path method CPM as a decision making method for path different path between source and destination in which the duration of each activity is the end-to-end delay. The critical path represent the path with longest delay. The idea is that security aware nodes can exploit the slack time to perform key management operations. The authors developed a protocol parser for evaluating complex scenarios and simulate a space DTNs.
 
 the general concern of DTN is ``How to address the architectural and protocol design principles
 arising from the need to provide interoperable communications with and among extreme and performance-challenged environments, where continuous end-to-end connectivity cannot be assumed'' \cite{caini2011delay}.
 
+\subsection{IETF Requirements}
 
-The DTKA used multiple Key Agents and a consensus protocol to avoid a single point of failure. IBC 2 used secret sharing scheme for the same purpose. 
+Templin \cite{templin-dtnskmreq-00} sketches 9 requirements (REQ) and 4 design criteria for a delay tolerant key management system. The design criteria list is defined to enforce the key management system requirements. The requirements not considered in this project are multiple points of authority (REQ 4) and no veto capabilities (REQ 5). These requirements are discussed below. 
+
+Multiple point of authority and no veto capabilities are two side from the same coin. The idea is that DTN nodes must not be forced to trust in a single KA and no single KA compromised can spoil the protocol. Considering the implementation aspects of the Interplanetary Internet discussed before, these requirements fit only for a subset of interplanetary networks, in consecuence, it can not be stated as a fundamental requirement but it can be considered as desirable property in particular situations. 
+
+The DTKA uses multiple Key Agents, a consensus protocol to agree the bulletins content, and distrubutes the risponsability of parts of the bullentin to different KAs to avoid a single point of failure. Other solutions, for instance based on ID-PKC, could use a secret sharing scheme for the same purpose. Both provide robustness to the system at the cost of computational and communication overhead which are not suitable to every space DTN. 
+
+
+The REQ 3 states that the system must not introduce a single point of failure. This requirement is reasonable for two reason. First, high availability of the key management system, in the case of a failure in the system. Second, the planets motion make the space DTN a disconnected network, some part of the network will always be unreachable from the trusted party. The document mention that ``DTN nodes cannot always depend on receiving information from any single key authority node'' but the same concept apply in the other way, when DTN nodes have to sent information to the authority. 
+
+The REQ 6 states that the system must bind a public key with a node Id, this is a fundamental requirement for key management system, so it is assumed that all key management systems must provide this requirement. 
+
+The publisher-subscriber pattern seems to be the best option to distribute keys assuming key management based on public certificates. The multiple points of authority will be deploy in some application domains but a single point of authority will be deployed in others. In the latter case, a much simpler initialisation and distribution mechanism will be used. 
+
+
+Most systems studied in the previous section does not address this problem. A common idea for ID-PKC is a secret sharing scheme, Aniket {et al.} \cite{kate2007anonymity} proposed exactly this solution. This solve in some extend the problem but introduces additional requirements for infrastructure and messages exchange \cite{al2003certificateless}. The DTKA provides the option of multiple Key Agents in one application domain but in its current specification, the solution contemplate the problem when the Key Agents have to send information but not when they have to receive. All Key Agents must receive the request messages from KO or KU. This requirement could be relax to deal with situation such as a Key Agent down.    
+
+
+Identity based cryptography: is impractical to generate new keys for short time periods in DTNs.
+Paper de Asokan, Nokia. IBC-based system try to solve the problem of key distribution and revocation list, eliminating the needs of having them. However, it is not clear the practical success as this solutions introduce many other problems. Asokan \cite{asokan2007towards} present a design to authenticate and encrypt messages using IBC and traditional PKI. The conclusion of his work is that IBC provide less message overhead for encryption but not for authentication, all these without considering the problems that ID-PKC introduce. 
 
 \subsection{Revocation List}

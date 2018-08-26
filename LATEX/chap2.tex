@@ -1,7 +1,7 @@
 \section{Deep Space Communications}
 \label{sec:space}
 
-There are significant differences between space-based communications and traditional communications on Earth. The physical properties of deep space are fundamental at the time of design communication protocols. This section gives a review of the principal components of space-based communications, the evolution of the communication model in space missions and provides an overview of the current security measures in space communication. 
+There are significant differences between space-based communications and traditional communications on Earth. The physical properties of deep space are fundamental when designing communication protocols. This section gives a summary of the principal components of space communications and a security overview of current space missions. 
 
 
 \subsection{Space-based communications}
@@ -11,7 +11,7 @@ The launch of the Sputnik 1 satellite in 1957 gave origin to the Space Race. Hum
 %As exploration mission went farther away in the solar system or requiere more science data from spacecraft, communication systems had to evolve to keep the pace of space missions complexity.
 
 
-\begin{figure}[ht]
+\begin{figure}[hbt]
 \centering
 \includegraphics[width=1 \linewidth, height=9.5cm]{images/ground.png} 
 \caption{Space-based communication architecture}
@@ -28,11 +28,11 @@ The distance of a space object to the earth determines the type of the communica
 
 
 
-Physical limitations are not the only problem; the communication model presents problems as well. Firstly,  the communication infrastructure was designed to be point-to-point. Secondly, each mission operates independently and the cooperation between missions is almost nonexistent.  Therefore, many missions use bespoke communications protocols; a space mission typically focuses its resources on immediate problems, and subsequent missions have to ``reinvent the weel'' \cite{burleigh2003interplanetary}. 
+Physical limitations are not the only problem; the communication model presents problems as well. Firstly,  the communication infrastructure was designed to be point-to-point. Secondly, each mission operates independently and the cooperation between missions is almost nonexistent. Many missions use bespoke communication protocols and subsequent missions have to ``reinvent the wheel'' \cite{burleigh2003interplanetary}. 
 
-However, over the last years, the situation is changing, and the Mars Exploration Rovers missions is an example. Besides, there is an effort from CCSDS and other bodies like IETF to standardised communication protocols for space missions. Examples include Space Packet Protocol and the Bundle protocol version for space communication, both developed by CCSDS. The Licklider protocol, developed by IETF, is a point-to-point protocol for use in deep space links.   % \cite{standard2010ccsds}. 
+Over the last years the situation is changing, there is an effort from CCSDS and other bodies like IETF to standardise communication protocols for space missions, and space missions started to adopt the new protocols \cite{weber2006transforming}. Examples include Space Packet Protocol (CCSDS), the Bundle Protocol \cite{standard2010ccsds}, and the Licklider Protocol\cite{birrane-dtn-adm-ltp-00}.  % . 
 
-The relay mechanism employed in Mars was the first advance towards a packet-switched network style; however, there is no proper inter-networking yet under this configuration. Mars rovers use available orbiters as intermediate hops, but there is no addressing scheme, no classes of data and no proper network layer. These limitations will restrict operations of future missions which will require more communication capabilities \cite{rationale2010requirements}. 
+The relay mechanism employed in the Mars Exploration Rover Mission was the first advance towards a packet-switched network style; although, there is no proper inter-networking yet under this configuration. Mars rovers use available orbiters as intermediate hops, but there is no addressing scheme or proper network layer. These limitations will restrict operations of future missions which will require more communication capabilities \cite{rationale2010requirements}. 
 
 
 The experience in Mars has shown the advantages of multi-hop communication over point-to-point communication. For instance increase in science data return, lower power and hardware requirements, and more contact opportunities \cite{rationale2010requirements}.  Besides, interoperability and cross-support across space agencies will be the usual situation in future space missions. Spacecraft, satellites, rovers and other human-made objects will operate as a network of space-based entities, similar to the figure \ref{fig:inter-internet}. 
@@ -50,13 +50,13 @@ The experience in Mars has shown the advantages of multi-hop communication over 
 \subsection{Security in Space Communications}
 
 
-Cyber threats apply to all kinds of information systems, especially the ones administrated by nation-states. Space systems are becoming more interconnected to terrestrial systems and space missions are now target of malicious attackers.  In the past, only military missions were highly protected, but nowadays all types of missions require a certain level of security \cite{book2006security}.
+Cyber threats apply to all kinds of information systems, especially the ones administrated by nation-states. Space systems are becoming more interconnected to terrestrial networks, and space missions are now target of malicious attackers.  In the past, only military missions were highly protected, but nowadays all types of missions require a certain level of security \cite{book2006security}.
 
-Threats could apply to any segment of a space mission, space segment, ground segment or space-link. The diagram \ref{fig:space-based-arc} illustrates two important points which affect the overall security.  Firstly, the mission control centre and the ground station are not in the same physical location, and the link between them requires a secure connection, consequently key management. Secondly, the network infrastructure on the earth could belong to one entity and the mission control centre to another.  For instance, the  Mars Exploration Mission operates Mars rovers, but the Deep Space Network controls the communications Earth-Mars.
+Threats could apply to any segment of space missions, either the space segment, ground segment or space-link. The figure \ref{fig:space-based-arc} illustrates two important points which affect the overall security.  Firstly, the mission control centre and the ground station are not in the same physical location, and the link between them requires a secure connection, consequently key management. Secondly, the network infrastructure on the earth could belong to one entity and the mission control centre to another.  For instance, the  Mars Exploration Mission operates Mars rovers, but the Deep Space Network controls the communications Earth-Mars.
 
-Point-to-point space links have been secured using bulk encryption \cite{book2011space}. Although this type of encryption is simple, it requires special techniques and hardware to be deployed on both ends of the space-link. However, bulk encryption is not scalable, multi-hop communication and interoperability among space agencies exclude bulk encryption as a candidate for the Interplanetary Internet %Ivancic \cite{ivancic2009security} mention potential problem in the US for international interoperability because The International Traffic in Arms Regulations might have jurisdiction.
+Point-to-point space links have been secured using bulk encryption \cite{book2011space}. Although this type of encryption is simple, it requires special techniques and hardware on both ends of the space-link. The problem is that bulk encryption is not suitable for multi-hop communication and interoperability among space agencies. This problem excludes bulk encryption as an option for the Interplanetary Internet. %Ivancic \cite{ivancic2009security} mention potential problem in the US for international interoperability because The International Traffic in Arms Regulations might have jurisdiction.
 
-The CCSDS published a report on security threats against space missions \cite{book2006security}. Adversaries include terrorist, criminals, foreign intelligence services, computer hackers, and commercial competitors.  Examples of active threats are jamming, unauthorised access, masquerading, Denial of Services. Passive threats could be tapping and traffic analysis.  The document states that security for space systems should be considered in the same way as any other information system.
+The CCSDS report considers terrorist, criminals, foreign intelligence services, computer hackers, and commercial competitors as potential adversaries for space missions \cite{book2006security}.  Also, the document states that mission planners must consider security for space systems in the same way as any other information system, as they are subject to passive and active threats. Examples of active threats are jamming, unauthorised access, masquerading, and Denial of Services (DoS); while traffic analysis is considered a passive threat. 
 
  
 
@@ -65,9 +65,14 @@ The CCSDS published a report on security threats against space missions \cite{bo
  %In \cite{book2012architecture}, CCSDS present security requirements for five space mission profile. These profiles are human spaceflight, earth observation, communication, scientific, and navigation. For instance, humans spaceflights present all security requirements but also ``safety-of-life'' and privacy issues. The security of earth observation, navigation, and communications missions vary depending on the information value and the relative position to the earth. Some missions require security for telemetry, telecommands, and payload communication, others only need to secure a subset of those. 
  
  %These profiles are human spaceflight, earth observation, communication, scientific, and navigation. 
-CCSDS presents different mission profile for space missions \cite{book2012architecture}. Some mission profiles require security for telemetry, telecommands, and payload communication; others only need to secure a subset of those. Human spaceflights are especially sensitive, but science missions present the most difficult scenarios as spacecraft might be exploring remote locations in the solar system and in general, missions lifetime are significantly longer. In multi-organisational missions, hardware, payloads and data may belong to different space agencies. Relay satellites and endpoints might be administrated by different space agencies as well.
+ 
+Space missions present different mission profiles: human space missions, earth observation satellites, communication satellites, science missions, and navigation satellites \cite{book2012architecture}. Some of them require security for telemetry, telecommands, and payload communication; others only need to secure a subset of those. 
 
-For many countries, satellites already form part of critical infrastructures like navigation, weather study, and disaster response \cite{book2006security}.  As state before, future missions will require interoperability between space nodes that might be administrated by different agencies. Therefore, space mission planners must consider the implementation of secure communications protocols whether the nodes are in orbit around Earth or exploring remote places in the solar system.
+
+Human spaceflights are especially sensitive, as they require ``safety-of-life'' guarantees. For many countries, satellites already form part of critical infrastructures like navigation, weather study, and disaster response \cite{book2006security}. Science missions present the most challenging scenario. Spacecraft might explore remote locations in the solar system and mission lifetime tend to be extensive. In multi-organisational missions, hardware, payloads and data may belong to different organisations. For multi-hop communication, relay satellites and spacecraft might be administrated by different entities.
+
+
+As state before, future missions will require interoperability between space nodes that might be administrated by different agencies. Therefore, space mission planners must consider the implementation of secure communications protocols whether the nodes are in orbit around Earth or exploring remote places in the solar system.
 
 
  
@@ -82,12 +87,12 @@ For many countries, satellites already form part of critical infrastructures lik
 
 \subsection{Key Management in current Missions}
 
-In current space missions, key management complexity is low.  Typically,  the entities involved are the mission control centre and the spacecraft. The mission control centre is responsible for generating, managing and revoking keys. For human-crewed missions, the human intervention in key management operations is limited. Optionally, the ground station could take part in key management operations if it is working as a security gateway. User facilities may get involved if payload data have to be distributed \cite{book2011space}. 
+In current space missions, key management complexity is low. Typically, the entities involved are the mission control centre and the spacecraft. The mission control centre is responsible for generating, managing and revoking keys. For human-crewed missions, the human intervention in key management operations is limited. Optionally, the ground station could take part in key management operations if it is working as a security gateway. User facilities may get involved if payload data have to be distributed \cite{book2011space}. 
 
 
-Commonly keys are stored in smart cards in physical protected places. Key generation procedure affects only the ground segment. Master keys are used to generate or exchange new keys of lower hierarchy such as traffic protection keys or key encrytion keys. In the case that a master key is used as an encryption key, all key management operations are conducted before launch. Any number of master keys could be used at the discretion of mission planners \cite{book2011space}.
+Commonly keys are stored in smart cards in physical protected places and key generation procedure affects only the ground segment. Master keys are used to generate or exchange new keys of lower hierarchy such as traffic protection keys or key encryption keys. In the case that a master key is used as an encryption key, all key management operations are conducted before launch. Any number of master keys could be used at the discretion of mission planners \cite{book2011space}.
 
-In addition to long delays and disrupted communications, many environmental properties influence communications in space missions. For instance, asymmetric channels, bandwidth restriction, and remote locations. All these constraints apply to communication and cryptographic protocols, but limited computational resources and memory play a big role for key management. For instance, rovers or sensors might not be able to perform heavy cryptographic operations, and the memory size limits the information that these space objects could store like keys or revocation list.
+In addition to long delays and disrupted communications, many environmental properties influence communications in space missions, such as asymmetric channels, bandwidth restriction, and remote locations. All these constraints apply to communication and cryptographic protocols, but limited computational resources and memory play a big role for key management. For instance, rovers or sensors might not be able to perform heavy cryptographic operations, and the memory size limits the information that these space objects could store like keys or revocation list.
 
 These limitations imply that symmetric key cryptosystems are more suitable for current space missions \cite{book2011space}, but future space missions present a different scenario, and it is unlikely than symmetric key based cryptosystems will meet the requirements of the Interplanetary Internet.
 

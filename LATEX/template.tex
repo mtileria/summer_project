@@ -1,6 +1,6 @@
 \documentclass[11pt]{article} % do not change this line
 \input{BigDataStyle.txt}      % do not change this line
-
+\usepackage[acronym]{glossaries}
 \usepackage{amsmath,amsfonts,amssymb,amsthm,latexsym,graphicx,caption,hyperref,listings} %,color,xcolor
 \usepackage[export]{adjustbox}
 \usepackage{float} 
@@ -11,7 +11,7 @@
 \emergencystretch=5mm
 \tolerance=400
 \allowdisplaybreaks[4]
-
+\makeglossaries
 
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[section]
@@ -28,9 +28,16 @@
 
 \newcommand{\Programme}{Doctoral Training Centre in Cyber Security}
 
+\makeglossaries
+
+\newacronym{gcd}{GCD}{Greatest Common Divisor}
+ 
+\newacronym{lcm}{LCM}{Least Common Multiple}
 
 \begin{document}
 \maketitle
+
+
 
 %\declaration
 
@@ -62,6 +69,11 @@ The Interplanetary Internet is a conceived communication system designed to prov
 \input{./chap6.tex}
 %\newpage
 
+
+
+\clearpage
+ 
+\printglossary[type=\acronymtype]
 
 \bibliographystyle{unsrt} %plain
 \bibliography{bibliography}
