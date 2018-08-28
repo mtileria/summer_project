@@ -1,39 +1,52 @@
-The following table \ref{table:summaryREQ} shows a summary of the key management systems and the requirements defined previously. Note that an ``X'' mark appears in the case the system does not meet the requirement or does not address the problem at all.    
+Table \ref{table:summary} presents a summary of all key management solutions study in this work, it shows whether the proposals deal or not with the most challenging parts: initialisation, distribution, and revocation. It shows as well if each solution is for two-party or group distribution and the method or scheme used.  
+
+Table \ref{table:summaryREQ} shows which requirements satisfies each solution for two-party communication. Note that an ``x'' mark appears in the case the system does not meet the requirement or does not address the problem at all.    
 
 %The table illustrated the proposals and the part of the problem that these schemes address, specifically, registration, establishment and update/revocation. 
 
-\begin{table}[hbt]
-\label{table:summaryREQ}
-\begin{tabular}{@{}lccccccc@{}}
- & \multicolumn{7}{l}{\cellcolor[HTML]{000000}{\color[HTML]{EFEFEF} key management requirement}} \\
-                           & \multicolumn{1}{l}{\cellcolor[HTML]{C0C0C0}REQ 1} & \multicolumn{1}{l}{\cellcolor[HTML]{C0C0C0}REQ 2} & \multicolumn{1}{l}{\cellcolor[HTML]{C0C0C0}REQ 3} & \multicolumn{1}{l}{\cellcolor[HTML]{C0C0C0}REQ 4} & \multicolumn{1}{l}{\cellcolor[HTML]{C0C0C0}REQ 5} & \multicolumn{1}{l}{\cellcolor[HTML]{C0C0C0}REQ 6} & \multicolumn{1}{l}{\cellcolor[HTML]{C0C0C0}REQ 7} \\
-\cellcolor[HTML]{C0C0C0}\cite{burleigh-dtnwg-dtka-01}   & $\surd$   & $\surd$   & $\surd$ & $\surd$ & $\surd$  & X & $\surd$  \\
-\cellcolor[HTML]{C0C0C0}\cite{seth2005practical}  & X & $\surd$ & X  & $\surd$  & X & X & $\surd$ \\
-\cellcolor[HTML]{C0C0C0}\cite{kate2007anonymity} & $\surd$ & $\surd$ & X  & X  & X & X & $\surd$ \\
-\cellcolor[HTML]{C0C0C0}\cite{xie2013practical} & $\surd$ & X & $\surd$  & $\surd$  & X & X & $\surd$ \\
-\cellcolor[HTML]{C0C0C0}\cite{van2010dynamic}  & X & $\surd$ & X  & $\surd$  & X & X & $\surd$ \\
-\cellcolor[HTML]{C0C0C0}\cite{lv2014non} & $\surd$ & X & X  & $\surd$  & X & X & $\surd$ \\
-\cellcolor[HTML]{C0C0C0} \cite{bhutta2014efficient} & $\surd$ & X & X  & X  & X & $\surd$ & $\surd$ \\
-\cellcolor[HTML]{C0C0C0} \cite{de2016fully} & $\surd$ & X & $\surd$  & X  & X & $\surd$ & $\surd$ \\
-
-\end{tabular}
-\end{table}
+\begin{landscape}
 
 \begin{table}[hbt]
-\label{table:summary}
 \begin{tabular}{lccccc}
- & \multicolumn{5}{l}{\cellcolor[HTML]{000000}{\color[HTML]{EFEFEF} Summary of key management system}} \\
-Ref. & \multicolumn{1}{l}{\cellcolor[HTML]{C0C0C0}Initialisation/Reg} & \multicolumn{1}{l}{\cellcolor[HTML]{C0C0C0}Distribution} & \multicolumn{1}{l}{\cellcolor[HTML]{C0C0C0}Revocation} & \multicolumn{1}{l}{\cellcolor[HTML]{C0C0C0}Two-parties/Group} & \multicolumn{1}{l}{\cellcolor[HTML]{C0C0C0}Method/Scheme} \\
-\cellcolor[HTML]{C0C0C0}\cite{burleigh-dtnwg-dtka-01} & Y & N & N & individual & Y \\
-\cellcolor[HTML]{C0C0C0}\cite{seth2005practical}  & Y & Y & Y  & individual & Y \\
-\cellcolor[HTML]{C0C0C0}\cite{kate2007anonymity} & Y & Y & Y N & individual & Y \\
-\cellcolor[HTML]{C0C0C0}\cite{xie2013practical} & Y & Y & N & individual & Y \\
-\cellcolor[HTML]{C0C0C0}\cite{van2010dynamic} & Y & Y & N & individual & Y \\
-\cellcolor[HTML]{C0C0C0}\cite{lv2014non} & Y & Y & N & individual &  Y \\
-\cellcolor[HTML]{C0C0C0}\cite{bhutta2014efficient} & Y & Y &  N & individual & Y \\
-\cellcolor[HTML]{C0C0C0}\cite{de2016fully}  & Y & Y & N & individual & Y \\
-\cellcolor[HTML]{C0C0C0}\cite{rusch2017forward} & Y & Y & N & individual & Y \\
-\cellcolor[HTML]{C0C0C0}\cite{xu2012chinese} & Y & Y & Y & group & Y \\
-\cellcolor[HTML]{C0C0C0}\cite{zhou2014autonomic} & Y & Y & Y & group & Y
-\end{tabular}
+ & \multicolumn{5}{l}{\cellcolor[HTML]{000000}{\color[HTML]{EFEFEF} Classification of key management systems}} \\
+Ref. & \multicolumn{1}{l}{\cellcolor[HTML]{C0C0C0}Init/Reg} & \multicolumn{1}{l}{\cellcolor[HTML]{C0C0C0}Dist.} & \multicolumn{1}{l}{\cellcolor[HTML]{C0C0C0}Rev.} & \multicolumn{1}{l}{\cellcolor[HTML]{C0C0C0}Individual/Group} & \multicolumn{1}{l}{\cellcolor[HTML]{C0C0C0}\centering Method} \\
+\cellcolor[HTML]{C0C0C0}Seth and Keshav\cite{seth2005practical}  & $\surd$ & $\surd$ &  & indiv & HIBC, HIBE and HIBS \\
+\cellcolor[HTML]{C0C0C0}Aniket \textit{et al.}\cite{kate2007anonymity} & $\surd$ & $\surd$ &  & indiv & HIBC \\
+\cellcolor[HTML]{C0C0C0}Xie and Wang\cite{xie2013practical} & $\surd$ & $\surd$ &  & indiv & distributed secret generation, bilinear pairing, self-certify identity \\
+\cellcolor[HTML]{C0C0C0}Van Vesien \cite{van2010dynamic} & & $\surd$ &  & indiv & IBC bilinear maps over elliptic curves \\
+\cellcolor[HTML]{C0C0C0}Lv \textit{et al.} \cite{lv2014non} & $\surd$ & $\surd$ &  & indiv &  time evolving model, two-channel cryptography \\
+\cellcolor[HTML]{C0C0C0}Butha \textit{et al.} \cite{bhutta2014efficient} &  & $\surd$ &  & indiv & certificates, proxy signatures \\
+\cellcolor[HTML]{C0C0C0}Andrade and Pessoa \cite{de2016fully}  & $\surd$ & $\surd$ &  & indiv & decentralised, PGP, signatures chains \\
+\cellcolor[HTML]{C0C0C0}Burleigh \textit{et al.}\cite{burleigh-dtnwg-dtka-01} & $\surd$ & $\surd$ & $\surd$ & indiv & certificates, bulletins \\
+\cellcolor[HTML]{C0C0C0}R\"{u}sch \textit{et al.}\cite{rusch2017forward} &  &  & & indiv & puncturable encryption, forward secure keys \\
+\cellcolor[HTML]{C0C0C0}Butha \textit{et al.} \cite{bhutta2016public} &  &  & $\surd$ & indiv & certificates, CRL, hash tables \\
+\cellcolor[HTML]{C0C0C0}Xu \textit{et al.} \cite{xu2012chinese} & $\surd$  & $\surd$ & $\surd$ & group & chinese theorem remainder \\
+\cellcolor[HTML]{C0C0C0}Zhou \textit{et al.} \cite{zhou2014autonomic} & $\surd$ & $\surd$ & $\surd$ & group & logical key hierarchy , one-encryption multiple-decryption keys \\ \end{tabular}
+\caption{Summary of key management systems}
+\label{table:summary}
 \end{table}
+
+\end{landscape}
+
+
+\begin{table}[hbt]
+\begin{tabular}{@{}lccccccc@{}}
+ & \multicolumn{7}{l}{\cellcolor[HTML]{000000}{\color[HTML]{EFEFEF} key Management Requirement}} \\
+ Ref. & \multicolumn{1}{l}{\cellcolor[HTML]{C0C0C0}REQ 1} & \multicolumn{1}{l}{\cellcolor[HTML]{C0C0C0}REQ 2} & \multicolumn{1}{l}{\cellcolor[HTML]{C0C0C0}REQ 3} & \multicolumn{1}{l}{\cellcolor[HTML]{C0C0C0}REQ 4} & \multicolumn{1}{l}{\cellcolor[HTML]{C0C0C0}REQ 5} & \multicolumn{1}{l}{\cellcolor[HTML]{C0C0C0}REQ 6} & \multicolumn{1}{l}{\cellcolor[HTML]{C0C0C0}REQ 7} \\
+\cellcolor[HTML]{C0C0C0}Seth and Keshav \cite{seth2005practical}  &  & $\surd$ &  & $\surd$ &  &  & $\surd$ \\
+\cellcolor[HTML]{C0C0C0}AniKet \textit{et al.} \cite{kate2007anonymity} & $\surd$ & $\surd$ &   &   &  &  & $\surd$ \\
+\cellcolor[HTML]{C0C0C0}Xie and Wang \cite{xie2013practical} & $\surd$ & & $\surd$  & $\surd$  & &  & $\surd$ \\
+\cellcolor[HTML]{C0C0C0}Van Vesien \cite{van2010dynamic}  & & $\surd$ & & $\surd$  & & & $\surd$ \\
+\cellcolor[HTML]{C0C0C0}Lv \textit{et al.} \cite{lv2014non} & $\surd$ &  &  & $\surd$  &  &  & $\surd$ \\
+\cellcolor[HTML]{C0C0C0}Butha \textit{et al.} \cite{bhutta2014efficient} & $\surd$ & & &  & & $\surd$ & $\surd$ \\
+\cellcolor[HTML]{C0C0C0}Andrade and Pessoa \cite{de2016fully} & $\surd$ &  & $\surd$  &  & & $\surd$ & $\surd$ \\
+\cellcolor[HTML]{C0C0C0}Burleigh \textit{et al.} \cite{burleigh-dtnwg-dtka-01}   & $\surd$   & $\surd$   & $\surd$ & $\surd$ & $\surd$  &  & $\surd$  \\
+\cellcolor[HTML]{C0C0C0}R{u}sch \textit{et al.}\cite{rusch2017forward}   & $\surd$  & $\surd$ &  & $\surd$ &  &  &   \\
+\end{tabular}
+\caption{Key Management Systems VS Requirements}
+\label{table:summaryREQ}
+\end{table}
+
+
+
+

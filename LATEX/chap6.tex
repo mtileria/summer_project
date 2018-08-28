@@ -1,13 +1,49 @@
 \section{Conclusions}
 \label{sec:con}
 
-The erly days of space exploration were characterized by relatively simple mission communicaiton requirements, specially considered todays missions. 
-
-Telecommunication capabilities increase dramatically and it was difficult to adhere to standards as each mission try to push the state of the art. As a result, customs equipments and interfaces were the norm. 
-
-As the internet has revolutionized terrestrial communication allowing diverse reigional networks to confederate over a backbone, the emergence of conceot indicates a similar expansion into space.  
+For interplanetary communication, the presence of celestial bodies affects the availability of links and considerably distances result in long propagation delays. For these reasons, traditional protocols are not suitable for this kind of environments, and significant work has been done to define a delay tolerant architecture which overcomes these problems.   
 
 
-A space DTN is a particular case of delay tolerant network. By far, is the most extreme scenario where delays could be extremely long and the communications get disrupted by the planets orbit and motion.
+The first days of space exploration required relatively simple communication systems; the communications were point-to-point between spacecraft and the operation control centre, and mission operated individually. The quick development of telecommunication made difficult the adoption of standard technologies. As a result, customs equipment, interfaces, and protocol were the norm. 
 
-For interplanetary communication, the presence of celestial bodies affects the availability of links. However, contacts can be predicted with celestial mechanins.
+
+Future space missions envision a shift from point-to-point communication towards a multi-hop communication, and from an isolated environment to a cooperative model. The CCSDS is the organisation which lead the effort to standardise protocols for space-based systems. The Bundle Protocol is recognised as the strongest candidate to support in-space internetworking, as it provides reliability in the presence of network partition and long delays. 
+
+Security is an essential feature of the Bundle Protocol for space missions, integrity and confidentiality services prevent unauthorised access to scarce resources, especially in the space segment. However, security specifications assume that bundle nodes are in possession of cryptographic keys.     
+
+Key management is recognised as one of the most challenging problems in Delay Tolerant Networks, and there is no common consensus on which solution suit best to future interplanetary networks. Bulk encryption and symmetric keys are commonly used to secure communication in space, but his model does not meet the requirement of future interplanetary networks, and an "Internet-style" model is expected for key management. This work presented an analysis of key management systems for the envisioned Interplanetary Internet. 
+
+%This work classifies key management systems depending on whether the scheme deals with secure initialisation, key establishment and revocation, which are the most challenging parts of the life-cycle.  
+
+It is well-known that the problems of public key management lie in the deployment and administration of the infrastructure to support cryptographic keys rather than cryptographic protocols. The first challenge was to understand why this problem is different from terrestrial networks and define the requirements for a suitable solution. 
+
+
+First, this work identifies the access to authenticated information without online interaction to any party as the fundamental requirement for key management. Network partition is a typical situation in space DTNs, and the connection to a distribution centre or the other parties cannot be assumed. Moreover, the communication paths between  (sender,receiver), (sender, trusted party), and (receiver, trusted party) are not uniform, resulting in variable delays. 
+
+
+Second, this work defines seven requirements to evaluate key management proposals. These requirements encompass the availability of keys, trust anchor, availability of the system, secure initialisation, revocation, scalability and compatibility with Bundle Protocol. None of the evaluated solutions satisfies all requirements, but the Delay-Tolerant Key Administration system  (an IETF Internet-Draft) achieves six of them, leaving scalability as an issue to be improved. 
+
+ACA EXPLICAR BREVEMENTE LAS MEJORAS PARA EL DTKA. 
+  
+
+
+ 
+%Lower operational cost, highest data return and more floxible system that can support the growthing number of spacecraft are other motivations. 
+
+ 
+
+%``The general concern of DTN is How to address the architectural and protocol design principles arising from the need to provide interoperable communications with and among extreme and performance-challenged environments, where continuous end-to-end connectivity cannot be assumed'' \cite{caini2011delay}.
+
+%A space DTN is a particular case of delay tolerant network. By far, is the most extreme scenario where delays could be extremely long and the communications get disrupted by the planets orbit and motion.
+
+
+
+
+
+% This work has been about building 
+
+% Significant work has been done
+% It is important to consider 
+% The most significant limitation to the 
+% As has already been made clear
+% It is also important to investigate 

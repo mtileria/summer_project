@@ -1,29 +1,32 @@
 \section{Deep Space Communications}
 \label{sec:space}
 
-There are significant differences between space-based communications and traditional communications on Earth. The physical properties of deep space are fundamental when designing communication protocols. This section gives a summary of the principal components of space communications and a security overview of current space missions. 
+There are significant differences between space-based communications and traditional communications on Earth, the physical properties of deep space are fundamental to understand this differences. This section gives a summary of the principal components of space communications and a security overview of current space mission systems. 
+
+%\textbf{Donde poner esto:}
+%In traditional networks, the purpose of routing is to select the best path between a source a destination. Routing protocols utilise the network state to calculate the best path according to one or more metrics assuming an almost real-time knowledge of the topology. In space DTNs, the topology could change faster than the time it takes the dissemination of topology updates. Routing still consists of selecting the next best hop until the destination, but the concept of best path is constrained. In this case, maximise the probability of bundle delivery could be the goal \cite{ivancic2009security,fall2003delay,araniti2015contact}. 
 
 
 \subsection{Space-based communications}
 
-The launch of the Sputnik 1 satellite in 1957 gave origin to the Space Race. Human spaceflights and unmanned robotic space probes were developed to support space exploration. Communication systems were designed to send commands from a mission control centre (telecommand) and receive telemetry or science data from spacecraft. The original idea was simple: the mission control centre sends a radio frequency signal to a spacecraft, then the spacecraft receives the signal via its antenna and process the telecommand. Finally, the spacecraft replies with telemetry commands or science data if requested to do so. A simplified diagram of a space mission architecture is shown in the figure \ref{fig:space-based-arc}.  
+The launch of the Sputnik 1 satellite in 1957 gave origin to the Space Race. Human spaceflights and unmanned robotic space probes were developed to support space exploration. Communication systems were designed to send commands from a mission control centre (telecommand) and receive telemetry or science data from spacecraft. The original idea was simple: the mission control centre sends a radio frequency signal to a spacecraft, then the spacecraft receives the signal via its antenna and process the telecommand. Finally, the spacecraft replies with telemetry commands or science data if requested to do so. Figure \ref{fig:space-based-arc} shows a simplified diagram of space missions architecture.  
 
 %As exploration mission went farther away in the solar system or requiere more science data from spacecraft, communication systems had to evolve to keep the pace of space missions complexity.
 
 
 \begin{figure}[hbt]
 \centering
-\includegraphics[width=1 \linewidth, height=9.5cm]{images/ground.png} 
+\includegraphics[width=1 \linewidth]{images/ground.png} 
 \caption{Space-based communication architecture}
 \label{fig:space-based-arc}
 \end{figure}
 
-In this example, the satellite and the Mars rover form part of the space segment. The space-link is the connection between the ground station and the satellite.  The ground station and the mission control centre constitute the ground segment. The mission control centre, sometimes called Operational Control Centre (OCC) has the control of the objects in deep space. This example shows the most complex scenario which is currently deployed in the Mars Exploration Rover mission \cite{crisp2003mars}. In the vast majority of space missions, the communication is directly between the OCC and the end-point in the outer space.
+In this example, the satellite and the Mars rover form part of the space segment. The space-link is the connection between the ground station and the satellite.  The ground station and the mission control centre constitute the ground segment. The mission control centre, sometimes called Operational Control Centre (OCC), has the control of the objects in deep space. This example shows the most complex scenario which is currently deployed in the Mars Exploration Rover mission \cite{crisp2003mars}. In the vast majority of space missions, the communication is directly between the OCC and the end-point in the outer space.
 
- The most significant differences between space-based and terrestrial communications are the long propagation delay due to the speed of light and the lack of end-to-end connectivity caused by planets motion. The result is disrupted communication subject to significant propagation delays. These inherent space properties make well-known protocols for terrestrial networks unsuitable for space communications \cite{fall2003delay}.
+ The most significant differences between space-based and terrestrial communications are the long propagation delays due to the speed of light and the lack of end-to-end connectivity caused by planets motion. The result is disrupted communication subject to significant propagation delays. These inherent space properties make well-known protocols for terrestrial networks unsuitable for space communications \cite{fall2003delay}.
 
 
-The distance of a space object to the earth determines the type of the communication. Near-earth communications present low delay and intermittent connectivity. Satellites in geosynchronous orbit are subject to low delay but continuous connectivity. Earth-Moon communication is a particular case, the round-trip delay is approximately 2.5 seconds, and there is a disruption in the communication due to the motion of the Earth and the Moon. Space missions beyond the Moon present the worst case: extremely long propagation delay and disrupted communication. For instance,  a signal from the farthest human-made object in deep space (Voyager 1) takes over 19 hours to reach the Earth. Signals sent by Mars rovers take between 7 and 20 minutes to reach Earth, depending on the position of the planets. 
+The distance of a space object to the Earth determines the type of the communication. Near-earth communications present low delay and intermittent connectivity. Satellites in geosynchronous orbit are subject to low delay but continuous connectivity. Earth-Moon communication is a particular case, the round-trip delay is approximately 2.5 seconds, and there is a disruption in the communication due to the motion of the Earth and the Moon. Space missions beyond the Moon present the worst case: extremely long propagation delay and disrupted communication. For instance,  a signal from the farthest human-made object in deep space (Voyager 1) takes over 19 hours to reach the Earth. Signals sent by Mars rovers take between 7 and 20 minutes to reach Earth, depending on the position of the planets. 
 % Moreover, a rover has to be in line-of-sight of an orbiter or the Earth to send or receive data, producing disrupted communication  
 
 
@@ -41,7 +44,7 @@ The experience in Mars has shown the advantages of multi-hop communication over 
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=1 \linewidth, height=9.5cm]{images/interplanetary.png} 
+\includegraphics[width=1 \linewidth]{images/interplanetary.png} 
 \caption{Interplanetary Internet}
 \label{fig:inter-internet}
 \end{figure}
@@ -52,7 +55,7 @@ The experience in Mars has shown the advantages of multi-hop communication over 
 
 Cyber threats apply to all kinds of information systems, especially the ones administrated by nation-states. Space systems are becoming more interconnected to terrestrial networks, and space missions are now target of malicious attackers.  In the past, only military missions were highly protected, but nowadays all types of missions require a certain level of security \cite{book2006security}.
 
-Threats could apply to any segment of space missions, either the space segment, ground segment or space-link. The figure \ref{fig:space-based-arc} illustrates two important points which affect the overall security.  Firstly, the mission control centre and the ground station are not in the same physical location, and the link between them requires a secure connection, consequently key management. Secondly, the network infrastructure on the earth could belong to one entity and the mission control centre to another.  For instance, the  Mars Exploration Mission operates Mars rovers, but the Deep Space Network controls the communications Earth-Mars.
+Threats could apply to any segment of space missions, either the space segment, ground segment or space-link. The figure \ref{fig:space-based-arc} illustrates two important points which affect the overall security.  Firstly, the mission control centre and the ground station are not in the same physical location, and the link between them requires a secure connection, consequently key management. Secondly, the network infrastructure on the earth could belong to one entity and the mission control centre to another.  For instance, the  Mars Exploration Mission operates Mars rovers, but the Deep Space Network controls Earth-Mars communications.
 
 Point-to-point space links have been secured using bulk encryption \cite{book2011space}. Although this type of encryption is simple, it requires special techniques and hardware on both ends of the space-link. The problem is that bulk encryption is not suitable for multi-hop communication and interoperability among space agencies. This problem excludes bulk encryption as an option for the Interplanetary Internet. %Ivancic \cite{ivancic2009security} mention potential problem in the US for international interoperability because The International Traffic in Arms Regulations might have jurisdiction.
 
@@ -72,7 +75,7 @@ Space missions present different mission profiles: human space missions, earth o
 Human spaceflights are especially sensitive, as they require ``safety-of-life'' guarantees. For many countries, satellites already form part of critical infrastructures like navigation, weather study, and disaster response \cite{book2006security}. Science missions present the most challenging scenario. Spacecraft might explore remote locations in the solar system and mission lifetime tend to be extensive. In multi-organisational missions, hardware, payloads and data may belong to different organisations. For multi-hop communication, relay satellites and spacecraft might be administrated by different entities.
 
 
-As state before, future missions will require interoperability between space nodes that might be administrated by different agencies. Therefore, space mission planners must consider the implementation of secure communications protocols whether the nodes are in orbit around Earth or exploring remote places in the solar system.
+As stated before, future missions will require interoperability between space nodes that might be administrated by different agencies. Therefore, space mission planners must consider the implementation of secure communication protocols whether the nodes are in orbit around Earth or exploring remote places in the solar system.
 
 
  
