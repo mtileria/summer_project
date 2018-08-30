@@ -1,7 +1,12 @@
-\section{Bundle Protocol and Security Specifications}
+\section{Space Delay Tolerant Networks}
 \label{sec:dtn}
 
-The Delay Tolerant Networking RFC \cite{cerf2007delay} defines an architecture for irregularly connected networks subject to frequent partition and possibly long propagation delays. To face these particular properties, the authors propose an overlay layer, called the \textbf{bundle layer}, which provides end-to-end reliable messages delivery. This layer works over the transport, network or data link layer using different convergence layer to communicate with lower layer protocols. The Bundle protocol specification \cite{rfc5050} defines the services offered by the bundle layer, data processing format, bundle processing and convergence layers. 
+The Delay Tolerant Networking RFC \cite{cerf2007delay} defines an architecture for irregularly connected networks subject to frequent partition and possibly long propagation delays. To face these particular properties, the authors propose an overlay layer, called the \textbf{bundle layer}, which provides end-to-end reliable messages delivery. 
+
+
+\subsection{The Bundle Protocol}
+
+The bundle layer works on the top of the transport, network or data link layer using different convergence services to communicate with lower layer protocols, Figure \ref{fig:bundle}. The Bundle protocol specification \cite{rfc5050} defines the services offered by the bundle layer, data processing format, bundle processing and convergence layers. 
 
 \begin{figure}[ht]
 \centering
@@ -20,7 +25,7 @@ According to CCSDS \cite{rationale2010requirements}, the Bundle protocol is the 
 Many successful experiments of the Bundle protocol were already performed in deep space  \cite{ivancic2010experience}. The first experiment was conducted by Surrey Satellite Technology in 2008. The test consisted on deliver images taken by the UK-DMC Disaster Monitoring Constellation satellites to ground stations using the Bundle Protocol. Similarly, the NASA employed this protocol in the Deep Impact Space Network experiment for around four weeks on board the Deep Impact/EPOXI spacecraft. The International Space Station has been connected to the Internet since 2010 using the BP, and also performed many experiments with the NASA Jet Propulsion Labs. \cite{araniti2015contact}.    
 
 
-\subsection{Security for space DTNs}
+\subsection{Security for Bundle Protocol}
 
 
  %From the beginning, the Delay-Tolerant Research Group worked on the security specifications for the Bundle protocol. The motivation was to provide data integrity and confidentiality services to the bundle layer. As space missions are more connected to the Internet and the economic value of space assets are very high is comprehensible consider information security as a critical component of the communication system.
@@ -40,9 +45,8 @@ In a multi-hop communication, intermediate nodes may verify the integrity of the
 A trade-off between usability against security is always present. Security adds overhead, but the limited resources in the space segment requires to maintain bandwidth and storage overhead low; otherwise, mission planners will reject the system. \cite{book2012architecture}.
 
 %The next section is a literature review of the so far proposed key management solutions for DTN in space.
-Add end paragraph.
 
-\subsection{Standardisation effort}
+\subsection{Standardisation Effort}
 
 Even though DTN working groups have been working actively since 2007, a key management specification has been postponed, mainly for its complexity \cite{rfc6257,irtf-dtnrg-sec-overview-06,templin-dtnskmps-00}. The Bundle Security Specification assumes that nodes are already in possession of shared or asymmetric key. Farrell presents high-level requirements for key management \cite{farrell-dtnrg-km-00}, but this document does not establish concluding requirements for a solution. Farrel argues that solutions must employ well-known protocols and options for manual keying, pre-shared keys, and public keys must be considered. 
 

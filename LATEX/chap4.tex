@@ -32,7 +32,8 @@ Another alternative widely explored is based on Identity Based Cryptography ID-P
   
 
 
-\subsection{Taxonomy of key Management in DTN}
+\subsection{Taxonomy of key Management in DTNs}
+\label{sec:taxonomy}
 
 % Creo que ya esta repetido.
 Key management includes a wide range of processes which together provide security to cryptographic keys.  The problem of secure administration of cryptographic keys is complex but well-understood on terrestrial networks. Future space-based networks present two challenges to key management systems. Firstly, the network topology is dynamic; it consists of heterogeneous space nodes and planned communication links, opportunistic links might be available as well. Secondly, traditional cryptographic protocols are not suitable for this type of network; this problem is widely discussed in previous sections.
@@ -67,7 +68,7 @@ Two desirable characteristics related to the performance are defined. First, the
 The REQ 1 encompasses the fundamental problem for DTN nodes, which is the access to authenticated information without online interaction with a CA, distribution centre or other nodes. In conclusion, the availability of authenticated information is the central problem for a key management system. 
 
 
-\subsection{A Survey of Key Management in space DTN}
+\subsection{A Survey of Key Management for Space DTNs}
 
 This work evaluates various key management system according to the requirements defined before. The analysis considers protocols which focus only on key distribution because this problem is critical for key management, as stated previously.
 
@@ -115,9 +116,9 @@ Recently, Menesidou and Vasilios \cite{menesidou2016automated} studied the probl
 
 \input{./table.tex}
 
-\subsection{Delay Tolerant Key Administration}
+\subsubsection{Delay Tolerant Key Administration}
 
-The previous analysis shows that no key management solution satisfies all requirements. The Delay Tolerant Key Administration (DTKA) draft is the most complete solution, it includes all problematic parts of the life-cycle, achieves almost all requirements, and proposes a fault tolerance distribution scheme. Besides, it clearly defines the entities involved in the system and their interaction, the initialisation phase, key distribution, key update, and revocation. A detailed description of the system is presented below including some suggestions to improve the message and storage overhead. 
+The previous analysis shows that no key management solution satisfies all requirements. The Delay Tolerant Key Administration (DTKA) draft is the most complete solution, it includes all problematic parts of the life-cycle, achieves almost all requirements, and proposes a fault tolerance distribution scheme. Besides, it clearly defines the entities involved in the system and their interaction, the initialisation phase, key distribution, key update, and revocation. A detailed description of the system is presented below.  
 
 The architectural elements (DTKA Entities) are:
 
@@ -130,17 +131,17 @@ The architectural elements (DTKA Entities) are:
 There are others architectural elements define in the DTKA but their interaction in the system is out-of-scope of the document, so these entities are not considered in this work. In practice, most of the DTN nodes will take KO and KU roles.
 
 
-The system interaction and the assumption of the system can be seen in Figure \ref{fig:dtka}, extracted from the DTKA specification \cite{burleigh-dtnwg-dtka-01}. Key Agents must be interconnected using sub-second one-way-light-time (OWLT) and rarely disrupted links. This requirement restricts the deployment of KAs on a terrestrial network, connected probably by the Internet. A time synchronization mechanism (TSM) is required as well by Key Agents such as NTP. A potentially delayed and disrupted channel interconnects KAs with the rest of the DTN, generally the space segment of the DTN. In the space segment, nodes have an own source of clock with an allowed drift of a few seconds.     
+Figure \ref{fig:dtka} shows the interaction between entities and the assumption. Key Agents must be interconnected using sub-second one-way-light-time (OWLT) and rarely disrupted links. This requirement restricts the deployment of KAs on a terrestrial network, connected probably by the Internet. A time synchronization mechanism (TSM) is required as well by Key Agents such as NTP. A potentially delayed and disrupted channel interconnects KAs with the rest of the DTN, generally the space segment of the DTN. In the space segment, nodes have an own source of clock with an allowed drift of a few seconds.     
 
 
 \begin{figure}[htb]
 \centering
 \includegraphics[width=1 \linewidth]{images/DTKA.png} 
-\caption{DTKA System interactions, \cite{burleigh-dtnwg-dtka-01}}
+\caption{DTKA System interactions, extracted from \cite{burleigh-dtnwg-dtka-01}}
 \label{fig:dtka}
 \end{figure}
 
-Each KO has a unique endpoint ID and generates its private-public pair. For registration, KOs send an association message via an OOB physical channel signed with its private key.  The signature is only to prove that the node is in possession of the private key corresponding to the public key. Registration requires a manual check of the message received via the physical channel by the Key Authority. Note that KOs have to send the registration message to all KAs in one application domain. 
+Each KO has a unique endpoint ID and generates its private-public pair. For registration, KOs send an association message via an OOB physical channel signed with its private key.  The signature is only to prove that the node is in possession of the private key corresponding to the public key. Registration requires a manual check of the message received via the physical channel by the Key Authority. Note that KOs have to send registration messages to all KAs in one application domain, producing a demanding operational overhead
 
 Nodes can periodically renew their public-private key pairs following the ``key roll-over protocol''. The roll-over protocol is similar to the registration process but does not require the OOB channel and the current private key is used to sign the association request. Like the registration request, this request must be sent to all KAs, see Figure \ref{fig:Node registration}.
 
@@ -151,7 +152,7 @@ Nodes can periodically renew their public-private key pairs following the ``key 
 \label{fig:Node registration}
 \end{figure}
 
-An association block contains a single pair node \textless ID , public key \textgreater or a revocation pair. A bulletin is a collection of association blocks. Each bulletin contains an unique and sequential identifier (serial number), and a trust model value. For instance, a list of KAs designated to multicast parts of the bulletin and the t-out-n threshold.
+An association block contains a single association or revocation pair  \textless ID , public key \textgreater. A bulletin is a collection of association blocks. Each bulletin contains an unique sequential identifier (serial number), and a trust model value. For instance, a list of KAs designated to multicast parts of the bulletin and a t-out-n threshold.
 
 The revocation procedure requires a human operator to initiate the process. The operator authenticates to the respective KA, identify the public key, and instruct a schedule revocation message. The KA then send out the message to all other KA instructing to include the revocation message in the next bulletin.   
 
@@ -178,11 +179,20 @@ In summary, bulletin distribution (Figure \ref{fig:distribution}) supports messa
 \label{fig:distribution}
 \end{figure}
 
-%If a node detects gaps in the received code blocks, it must send a message to all KAs requesting the retransmission of the missing code blocks corresponding to a serial number. Upon receiving enough number of code blocks, the KU can reconstruct the bulletin with its unique serial number. After receiving the bulletins, DTN nodes have authenticated public information that can be used to encrypt and authenticate messages during the effective time for each pair node ID-public key. 
+\subsubsection{Issues with DTKA }
 
 
+A potential problem occurs when an application domain has many KAs. In this case, KOs have to send association requests to all KAs via the OOB physical channel. It is important to consider two aspects of this process. First, a KO is a bundle node and not a physical node such as a spacecraft, which could contain many bundle nodes, potentially thousands. Second, KAs will be geographically distributed to guarantee availability.
 
+This strong registration mechanism is proper for critical space nodes such as relay satellites or space stations, but for light-wave nodes like robots or sensor, it seems an overwhelming overhead which mission planners may not be keen on tolerating. 
 
+A hierarchical approach could work better in this situation. Bundle nodes could be classified into different groups depending on their ``importance'' in the network. Some nodes are critical for the network infrastructure, for instance, relay satellites or ``in-space directories''. The strong registration mechanism could apply to these nodes, but less critical nodes may register with less KAs, one for ``basic'' nodes. 
+
+Suppose that an application domain has three Key Agents (A, B, and C) and a bundle node BN performs the OOB registration with A. Then A will notify B and C about the new registration, and the other Key Agents will accept the new certificate with the corresponding level of trust. Policies will limit the resource usage according to the node classification. 
+
+The REQ 3, defined previously, states that the system must not introduce a single point of failure. Key Agents distribute encoded bulletins in a way that if some KAs fail, KUs can still decode the bulletin. However, when KOs send assertion messages, all KAs must receive this message, resulting in a distributing system where all KAs must be available, receive the same information, and reach consensus.
+
+This approach deals with the compromise of Key Agents making the distribution of authenticated information robust to one or more compromise KAs, but from space segment, the Key Authority act as a distributed system in which none of the agents can fail. This situation presents a trade-off between availability and security, and the question that remains to answer is whether the system can achieve both features or one will be prioritised over the other. 
 
 % for DTKA suggestion: 
 % These separate the signing and
@@ -190,13 +200,5 @@ In summary, bulletin distribution (Figure \ref{fig:distribution}) supports messa
 % certificate in a repository. Since the repository no longer needs to be trusted and can be replicated, made fault-tolerant,
 % and given various other desirable properties, this removes many of the problems associated with a trusted directory
 % Storage!!! usar distribution centres para el DTKA. 
-
-% A potential problem occurs when an application domain has more than one operating KA. In this case, a KO has to send the association requests to all KAs via an OOB physical channel. Many Key agents provide fault tolerance, so it is safe to assume that KAs will be in different locations. This strong authentication mechanism is proper for sensitive space node such as relay satellites, but it seems an overwhelming overhead for lightwave nodes like a sensor or robot. Even more, DTN nodes could be anything from a spacecraft to a process running is an Operating System. A hierarchical approach could work better in this situation where some nodes are required to authenticate with all KAs in their application domain, but less critical nodes could authenticate with one KA. 
-
-
-%The REQ 3 states that the system must not introduce a single point of failure. This requirement is reasonable for two reason. First, high availability of the key management system, in the case of a failure in the system. Second, the planets motion make the space DTN a disconnected network, some part of the network will always be unreachable from the trusted party. The document mention that ``DTN nodes cannot always depend on receiving information from any single key authority node'' but the same concept apply in the other way, when DTN nodes have to sent information to the authority. 
-%Most systems studied in the previous section does not address this problem. A common idea for ID-PKC is a secret sharing scheme, Aniket {et al.} \cite{kate2007anonymity} proposed precisely this solution. This solves to some extent the problem but introduces additional requirements for infrastructure and messages exchange \cite{al2003certificateless}. The DTKA provides the option of multiple Key Agents in one application domain, but on its current specification, the solution contemplates the problem when the Key Agents send information but not when they receive. For instance, all Key Agents must receive the request messages from KOs or KUs. This requirement could be relaxed to deal with situations such as a Key Agent down.
-
-%The DTKA uses multiple Key Agents, a consensus protocol to agree the bulletins content, and distrubutes the risponsability of parts of the bullentin to different KAs to avoid a single point of failure. Other solutions, for instance based on ID-PKC, could use a secret sharing scheme for the same purpose. Both provide robustness to the system at the cost of computational and communication overhead which are not suitable to every space DTN. 
 
  

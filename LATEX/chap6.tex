@@ -1,31 +1,60 @@
 \section{Conclusions}
 \label{sec:con}
 
-For interplanetary communication, the presence of celestial bodies affects the availability of links and considerably distances result in long propagation delays. For these reasons, traditional protocols are not suitable for this kind of environments, and significant work has been done to define a delay tolerant architecture which overcomes these problems.   
+The first days of space exploration required relatively simple communication systems, but future space missions envision a shift from point-to-point links towards a multi-hop communication, and from an isolated environment to a cooperative model between space agencies.
+
+Traditional protocols are not suitable for interplanetary communication, the presence of celestial bodies affects the availability of links and considerably distances result in long propagation delays. The Delay Tolerant Architecture and the Bundle Protocol define an overlay layer which provides a solution to these problems.
+
+Security is a critical component in space system as resources are scarce and expensive, especially in the space segment. The Bundle Security Protocol defines integrity and confidentiality services for the Bundle Protocol.  However, this security specification assumes that bundle nodes are in possession of cryptographic keys. 
 
 
-The first days of space exploration required relatively simple communication systems; the communications were point-to-point between spacecraft and the operation control centre, and mission operated individually. The quick development of telecommunication made difficult the adoption of standard technologies. As a result, customs equipment, interfaces, and protocol were the norm. 
-
-
-Future space missions envision a shift from point-to-point communication towards a multi-hop communication, and from an isolated environment to a cooperative model. The CCSDS is the organisation which lead the effort to standardise protocols for space-based systems. The Bundle Protocol is recognised as the strongest candidate to support in-space internetworking, as it provides reliability in the presence of network partition and long delays. 
-
-Security is an essential feature of the Bundle Protocol for space missions, integrity and confidentiality services prevent unauthorised access to scarce resources, especially in the space segment. However, security specifications assume that bundle nodes are in possession of cryptographic keys.     
-
-Key management is recognised as one of the most challenging problems in Delay Tolerant Networks, and there is no common consensus on which solution suit best to future interplanetary networks. Bulk encryption and symmetric keys are commonly used to secure communication in space, but his model does not meet the requirement of future interplanetary networks, and an "Internet-style" model is expected for key management. This work presented an analysis of key management systems for the envisioned Interplanetary Internet. 
+Key management is recognised as one of the most challenging problems in Delay Tolerant Networks, and there is no common consensus on which solution suit best to future interplanetary networks. Bulk encryption and symmetric keys are commonly used to secure communication in space, but his model does not fit with the new requirements, and an "Internet-style" model is expected for key management. This work presented an analysis of key management systems for the envisioned Interplanetary Internet. 
 
 %This work classifies key management systems depending on whether the scheme deals with secure initialisation, key establishment and revocation, which are the most challenging parts of the life-cycle.  
 
-It is well-known that the problems of public key management lie in the deployment and administration of the infrastructure to support cryptographic keys rather than cryptographic protocols. The first challenge was to understand why this problem is different from terrestrial networks and define the requirements for a suitable solution. 
+%\subsection{Conclusions}
+
+%The conclusions of this work are listed below
 
 
-First, this work identifies the access to authenticated information without online interaction to any party as the fundamental requirement for key management. Network partition is a typical situation in space DTNs, and the connection to a distribution centre or the other parties cannot be assumed. Moreover, the communication paths between  (sender,receiver), (sender, trusted party), and (receiver, trusted party) are not uniform, resulting in variable delays. 
+%It is well-known that the problems of public key management lie in the deployment and administration of the infrastructure to support cryptographic keys rather than cryptographic protocols. The first challenge was to understand why this problem is different from terrestrial networks and define the requirements for a suitable solution. 
+
+First, this work identifies the access to authenticated information without online interaction with any party as the fundamental difference between traditional and delay tolerant key management. Network partition is a typical situation in space DTNs, and the connection to a directory server or the other party cannot be assumed. 
+
+%Moreover, the communication paths between  (sender,receiver), (sender, trusted party), and (receiver, trusted party) are not uniform, resulting in variable delays. 
 
 
-Second, this work defines seven requirements to evaluate key management proposals. These requirements encompass the availability of keys, trust anchor, availability of the system, secure initialisation, revocation, scalability and compatibility with Bundle Protocol. None of the evaluated solutions satisfies all requirements, but the Delay-Tolerant Key Administration system  (an IETF Internet-Draft) achieves six of them, leaving scalability as an issue to be improved. 
+Second, this work defines seven requirements to evaluate state-of-the-art key management solutions. None of the evaluated solutions satisfies all requirements, but the Delay-Tolerant Key Administration system  (an IETF Internet-Draft) achieves six of them, leaving scalability as an issue to be improved. 
+%These requirements encompass the availability of keys, trust anchor, availability of the system, secure initialisation, revocation, scalability and compatibility with Bundle Protocol.
 
-ACA EXPLICAR BREVEMENTE LAS MEJORAS PARA EL DTKA. 
-  
+The professionals from the space industry anticipate that no single interplanetary network will be deployed in Solar System. A bunch of disjoint application domains administrated by different groups will be the most likely scenario to the disadvantage of all participants.
 
+Each application domain will have different infrastructure and requirements; in consequence, no single key management system fits all application domains. The stakeholders will define which authority model will be used for each interplanetary network.  
+
+The clear separation of protocols, policies, ciphersuites, and configuration will make the operation of networks simpler. Hierarchical implementation will suit better different application domain requirements.
+
+Geopolitical aspects affect the future deployment of interplanetary networks. Currently, there is no cooperation between nation states such as China and the United States. However, space exploration has been a place to bring nations closer, and this can happen again with the help of other organisation such as the European Space Agency.
+
+
+There is still work to do on key management for Interplanetary networks. Remain as future work the scrutinising of the Delay Tolerant Key Administration system. Scalability and the concept of in-space directory services could be further explored. The definition of policies and configuration for interplanetary networks remain pending, as well as its standardisation. The developing of application for DTNs present a change of paradigm which remains without much attention.
+
+\subsection{A Personal Voyage}
+
+I decided to study the problem of key management for the Interplanetary Internet because it encompasses two of my favourites topics: space exploration and protocols.  I will explain the journey over this three months, the challenges, limitation, errors and more important, lessons learned.
+
+
+I had several challenges to solve before analyse key management systems. First, I had to understand how space missions communicate with spacecraft, and second I had to find a way to contact experts in the space industry. 
+
+The first problem involved reading materials about architecture, communications protocols, and security for space missions. It was a big challenge that required a long time. I focused on the cryptographic and network topology aspects of key management, but aspects as compliance restrictions, process and environmental control were barely considered.
+
+
+A good experience was the contact with professionals from the space industry. People from NASA and Surrey Satellite Technology SST were keen to give their feedback on many issues. A visit to SST facilities in Guildford helped me to understand the problem from the mission operation centre and security issues. 
+
+The project had some unexpected situations. First, the idea was to analyse state-of-the-art solutions because there was no proposed solution by the IETF. In the middle of the project, I found a newly published Internet-Draft containing a full specification for a key management system for space DTNs. Of course, this is an Internet-Draft,  the DTN working group have not analysed yet, but the scenario changed, and I had to adapt my project. 
+
+The second situation was the feedback from the people from NASA. They expect many interplanetary networks and different key management system for each one. This contrasted with my idea to find a key management system that suits best to the Interplanetary Internet. Again, I had to adapt my project and explore new parts of the problem such as the geopolitics issues between the stakeholders.
+
+My most important learned lessons are: 1) A project can change direction quickly, and one has adapt to the circumstances. 2) Implementations constrain does limit the scope of research, and even if it is not likely a unified interplanetary network, this does not imply that a theoretical solution is not possible. 
 
  
 %Lower operational cost, highest data return and more floxible system that can support the growthing number of spacecraft are other motivations. 
